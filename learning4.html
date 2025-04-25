@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tennis Scoring Trainer – Point Progression</title>
+  <title>Tennis Scoring Trainer – Tiebreaks</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
@@ -25,7 +25,7 @@
     .objective-description {
       font-size: 18px;
       margin-bottom: 40px;
-      max-width: 600px;
+      max-width: 700px;
     }
 
     .progress-wrapper {
@@ -50,41 +50,59 @@
       background-color: #B9FF66;
     }
 
-    .skip-btn {
+    .skip-btn, .next-btn {
       background-color: #B9FF66;
-      padding: 12px 20px;
-      font-size: 16px;
       border: 2px solid #000;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 12px 20px;
       border-radius: 8px;
       cursor: pointer;
-      margin: 30px 0;
+      margin-top: 20px;
+      display: inline-block;
     }
 
     .next-btn {
+      margin-top: 40px;
       background-color: #000;
       color: #fff;
-      padding: 12px 20px;
-      font-size: 16px;
-      border: 2px solid #000;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 40px;
     }
 
     .info-box {
       background-color: #F5F5F5;
       border-radius: 24px;
       padding: 40px;
+      margin-top: 40px;
     }
 
-    .info-header {
+    .info-label {
+      font-size: 20px;
+      font-weight: 600;
+      background-color: #B9FF66;
+      display: inline-block;
+      padding: 4px 10px;
+      margin-bottom: 10px;
+    }
+
+    .info-text {
+      font-size: 18px;
+    }
+
+    .timeline-box {
+      background-color: #F5F5F5;
+      border-radius: 24px;
+      padding: 40px;
+      margin-top: 40px;
+    }
+
+    .timeline-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       margin-bottom: 30px;
     }
 
-    .info-title {
+    .timeline-label {
       font-size: 20px;
       font-weight: 600;
       background-color: #B9FF66;
@@ -92,51 +110,46 @@
       padding: 4px 10px;
     }
 
-    .info-note {
+    .timeline-instruction {
       font-size: 16px;
       font-weight: 500;
       max-width: 360px;
     }
 
-    .graphic-bar {
-      background-color: #333;
-      color: white;
-      border-radius: 100px;
-      padding: 14px 30px;
+    .timeline-bar {
       display: flex;
       justify-content: center;
-      gap: 40px;
+      align-items: center;
+      gap: 24px;
+      margin: 40px 0;
+      font-weight: 600;
       font-size: 18px;
-      font-weight: 500;
-      margin-bottom: 20px;
     }
 
-    .graphic-step {
-      cursor: pointer;
-      transition: opacity 0.2s ease;
+    .timeline-point {
+      background-color: #444;
+      color: white;
+      padding: 14px 22px;
+      border-radius: 32px;
     }
 
-    .graphic-step:hover {
-      opacity: 0.8;
+    .timeline-point:last-child {
+      background-color: #B9FF66;
+      color: black;
     }
 
-    .arrow {
-      font-size: 20px;
+    .caption-boxes {
+      display: flex;
+      justify-content: space-around;
+      gap: 40px;
+      margin-top: 20px;
+      text-align: center;
     }
 
-    .bubble {
-      background-color: white;
-      border-radius: 16px;
-      border: 1.5px solid #000;
-      padding: 18px;
-      max-width: 600px;
-      margin: 0 auto;
-      display: none;
-      font-size: 16px;
-    }
-
-    .bubble.active {
-      display: block;
+    .timeline-caption {
+      font-size: 14px;
+      font-style: italic;
+      max-width: 300px;
     }
 
     .top-nav {
@@ -163,7 +176,7 @@
       <div class="nav-right">
         <div class="nav-links">
           <a href="index.html" class="nav-link">Home</a>
-          <a href="learning2.html" class="nav-link active">Learning</a>
+          <a href="learning4.html" class="nav-link active">Learning</a>
           <a href="preview.html" class="nav-link">Quiz</a>
           <a href="results.html" class="nav-link">Results</a>
         </div>
@@ -172,8 +185,8 @@
           <div class="bar">
             <div class="bar-step active"></div>
             <div class="bar-step active"></div>
-            <div class="bar-step"></div>
-            <div class="bar-step"></div>
+            <div class="bar-step active"></div>
+            <div class="bar-step active"></div>
           </div>
         </div>
       </div>
@@ -181,57 +194,61 @@
 
     <!-- Page Content -->
     <div class="learning-content">
-      <h1 class="page-title">Point Progression</h1>
+      <h1 class="page-title">Tiebreaks</h1>
 
       <div class="objective-title">Learning Objective:</div>
       <div class="objective-description">
-        Understand the order of points and how to win a game.
+        Learn how tiebreaks are played to determine the winner of a set tied at 6–6, with a focus on scoring rules, key moments, and strategies.
       </div>
 
       <a href="preview.html">
         <button class="skip-btn">Skip to Quiz</button>
       </a>
 
+      <!-- What is a Tiebreak Section -->
       <div class="info-box">
-        <div class="info-header">
-          <div class="info-title">Remember How Points are Counted</div>
-          <div class="info-note">
-            A player must win 4 points to win a game — but the points aren’t counted like 1, 2, 3. Instead, they are:
+        <div class="info-label">What is a Tiebreak?</div>
+        <div class="info-text">
+          A tiebreak is used to determine the winner of a set when the score reaches 6–6.
+          Instead of traditional games, players compete to reach a set number of points—usually 7—
+          while maintaining a two-point lead.
+        </div>
+      </div>
+
+      <!-- Timeline Section -->
+      <div class="timeline-box">
+        <div class="timeline-header">
+          <div class="timeline-label">Let’s See This in Action!</div>
+          <div class="timeline-instruction">
+            Click on the buttons to walk through the timeline of breaking a tie.
           </div>
         </div>
 
-        <div class="graphic-bar">
-          <span class="graphic-step" onclick="showPoint('love')">Love (0)</span>
-          <span class="arrow">→</span>
-          <span class="graphic-step" onclick="showPoint('15')">15</span>
-          <span class="arrow">→</span>
-          <span class="graphic-step" onclick="showPoint('30')">30</span>
-          <span class="arrow">→</span>
-          <span class="graphic-step" onclick="showPoint('40')">40</span>
-          <span class="arrow">→</span>
-          <span class="graphic-step" onclick="showPoint('game')">Game</span>
+        <div class="timeline-bar">
+          <div class="timeline-point">1–0</div>
+          <div class="timeline-point">2–0</div>
+          <div class="timeline-point">6–6</div>
+          <div class="timeline-point">7–6</div>
+          <div class="timeline-point">8–6</div>
+          <div class="timeline-point">WIN!</div>
         </div>
 
-        <div id="love" class="bubble active">Love represents 0 points.</div>
-        <div id="15" class="bubble">This is the first point a player earns.</div>
-        <div id="30" class="bubble">This is the second point a player earns, and halfway to winning the game.</div>
-        <div id="40" class="bubble">When players tie 40–40, it is called a deuce.</div>
-        <div id="game" class="bubble">To win by an adequate margin, a player must lead by 2 points (e.g., 40–30 is a win, but not 15–30).</div>
+        <div class="caption-boxes">
+          <div class="timeline-caption">
+            Player 1 wins the first point and takes an early lead.
+          </div>
+          <div class="timeline-caption">
+            As the game continues with each player scoring until 6–6, a tiebreak is reached.
+          </div>
+        </div>
       </div>
 
-      <a href="learning3.html">
+      <!-- NEXT button to go to Quiz -->
+      <a href="preview.html">
         <button class="next-btn">Next</button>
       </a>
     </div>
   </div>
-
-  <script>
-    function showPoint(id) {
-      const bubbles = document.querySelectorAll('.bubble');
-      bubbles.forEach(b => b.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-    }
-  </script>
 </body>
 </html>
 

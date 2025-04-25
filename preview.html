@@ -1,72 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tennis Scoring Trainer - Preview</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        .preview-container {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 20px;
-        }
-        .preview-title {
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        .preview-links {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .preview-link {
-            display: block;
-            padding: 15px 20px;
-            background-color: #f5f5f5;
-            border-radius: 8px;
-            text-decoration: none;
-            color: #000;
-            transition: all 0.3s ease;
-        }
-        .preview-link:hover {
-            background-color: #B9FF66;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tennis Scoring Trainer - Page Preview</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    .preview-container {
+      padding: 60px 100px;
+      text-align: center;
+    }
+
+    .preview-title {
+      font-size: 36px;
+      font-weight: 600;
+      margin-bottom: 40px;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .btn-preview {
+      padding: 16px 32px;
+      font-size: 20px;
+      font-weight: 600;
+      border-radius: 10px;
+      border: 2px solid #000;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .btn-quiz {
+      background-color: #B9FF66;
+      color: #000;
+    }
+
+    .btn-return {
+      background-color: #000;
+      color: #fff;
+    }
+
+    .btn-preview:hover {
+      opacity: 0.9;
+    }
+
+    .top-nav {
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+  </style>
 </head>
-
 <body>
-    <div class="quiz-container">
-        <!-- Top Navigation -->
-        <div class="top-nav">
-            <div class="logo">
-                <span class="star">★</span>
-                <span class="logo-text">Tennis Scoring Trainer</span>
-            </div>
-            <div class="nav-links">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="learning.html" class="nav-link">Learning</a>
-                <a href="preview.html" class="nav-link active">Quiz</a>
-                <div class="nav-link-container">
-                    <a href="results.html" class="nav-link">Results</a>
-                </div>
-            </div>
+  <div class="quiz-container">
+    <!-- Top Navigation -->
+    <div class="top-nav">
+      <div class="logo">
+        <span class="star">★</span>
+        <span class="logo-text">Tennis Scoring Trainer</span>
+      </div>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="learning1.html" class="nav-link">Learning</a>
+          <a href="preview.html" class="nav-link active">Quiz</a>
+          <a href="results.html" class="nav-link">Results</a>
         </div>
-
-        <!-- Main Preview Content -->
-        <div class="preview-container">
-            <h1 class="preview-title">Tennis Scoring Trainer - Page Preview</h1>
-            <div class="preview-links">
-                <a href="index.html" class="preview-link">Main Quiz Page</a>
-                <a href="quiz1.html" class="preview-link">Quiz Page 1: Point Progression</a>
-                <a href="quiz2.html" class="preview-link">Quiz Page 2: Deuce Scenario</a>
-                <a href="quiz3.html" class="preview-link">Quiz Page 3: What Does Love Mean?</a>
-                <a href="quiz4.html" class="preview-link">Quiz Page 4: Deuce & Advantage Drag & Drop</a>
-                <a href="quiz5.html" class="preview-link">Quiz Page 5: Point Progression Drag & Drop</a>
-                <a href="quiz6.html" class="preview-link">Quiz Page 6: Scoring Pyramid Fill-In</a>
-            </div>
-        </div>
+      </div>
     </div>
+
+    <!-- Main Content -->
+    <div class="preview-container">
+      <h1 class="preview-title">Ready to Begin the Quiz?</h1>
+      <div class="button-group">
+        <a href="learning1.html" class="btn-preview btn-return">Return to Learning</a>
+        <a href="quiz1.html" class="btn-preview btn-quiz">Start the Quiz</a>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
+

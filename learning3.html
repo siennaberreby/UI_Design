@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tennis Scoring Trainer – Deuce & Advantage</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    .learning-content {
+      padding: 40px 100px;
+    }
+
+    .page-title {
+      font-size: 36px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .objective-title {
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .objective-description {
+      font-size: 18px;
+      margin-bottom: 40px;
+      max-width: 700px;
+    }
+
+    .progress-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .bar {
+      display: flex;
+      gap: 8px;
+    }
+
+    .bar-step {
+      width: 40px;
+      height: 16px;
+      border-radius: 6px;
+      background-color: #eee;
+    }
+
+    .bar-step.active {
+      background-color: #B9FF66;
+    }
+
+    .skip-btn, .next-btn {
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 30px;
+    }
+
+    .skip-btn {
+      background-color: #B9FF66;
+      border: 2px solid #000;
+    }
+
+    .next-btn {
+      background-color: #000;
+      color: #fff;
+      border: 2px solid #000;
+    }
+
+    .info-box {
+      background-color: #F5F5F5;
+      border-radius: 24px;
+      padding: 40px;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .info-section {
+      max-width: 700px;
+      margin-bottom: 30px;
+    }
+
+    .info-label {
+      font-size: 20px;
+      font-weight: 600;
+      background-color: #B9FF66;
+      display: inline-block;
+      padding: 4px 10px;
+      margin-bottom: 10px;
+    }
+
+    .info-text {
+      font-size: 18px;
+    }
+
+    .info-text strong {
+      font-weight: 600;
+    }
+
+    .bubble-note {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background-color: #fff;
+      border: 2px solid #000;
+      border-radius: 50px;
+      padding: 14px 18px;
+      font-size: 14px;
+    }
+
+    .timeline-box {
+      background-color: #F5F5F5;
+      border-radius: 24px;
+      padding: 40px;
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 30px;
+    }
+
+    .timeline-label {
+      font-size: 20px;
+      font-weight: 600;
+      background-color: #B9FF66;
+      display: inline-block;
+      padding: 4px 10px;
+    }
+
+    .timeline-instruction {
+      font-size: 16px;
+      font-weight: 500;
+      max-width: 360px;
+    }
+
+    .btn-simulate {
+      background-color: #B9FF66;
+      font-weight: 600;
+      padding: 12px 18px;
+      margin: 10px 10px 20px 0;
+      font-size: 16px;
+      border: 2px solid black;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn-simulate:hover {
+      background-color: #a0f54f;
+    }
+
+    .scoreboard {
+      width: 100%;
+      max-width: 400px;
+      margin-top: 20px;
+      border: 2px solid #000;
+      border-radius: 12px;
+      background: #fff;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .score-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 24px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .score-row:last-child {
+      border-bottom: none;
+    }
+
+    .status-message {
+      font-size: 20px;
+      font-weight: 600;
+      margin-top: 16px;
+    }
+
+    .top-nav {
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="quiz-container">
+    <!-- Top Nav with progress -->
+    <div class="top-nav">
+      <div class="logo">
+        <span class="star">★</span>
+        <span class="logo-text">Tennis Scoring Trainer</span>
+      </div>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="learning3.html" class="nav-link active">Learning</a>
+          <a href="preview.html" class="nav-link">Quiz</a>
+          <a href="results.html" class="nav-link">Results</a>
+        </div>
+        <div class="progress-wrapper">
+          <span style="font-size: 14px; font-weight: 500;">PROGRESS</span>
+          <div class="bar">
+            <div class="bar-step active"></div>
+            <div class="bar-step active"></div>
+            <div class="bar-step active"></div>
+            <div class="bar-step"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Page Content -->
+    <div class="learning-content">
+      <h1 class="page-title">Deuce & Advantage</h1>
+
+      <div class="objective-title">Learning Objective:</div>
+      <div class="objective-description">
+        Learn the concepts of deuce and advantage through an interactive tennis game simulation, where score progression and all possible outcomes are dynamically demonstrated.
+      </div>
+
+      <a href="preview.html">
+        <button class="skip-btn">Skip to Quiz</button>
+      </a>
+
+      <div class="info-box">
+        <div class="info-section">
+          <div class="info-label">What is a Deuce?</div>
+          <div class="info-text">
+            When both players have 40 points, <strong>the game enters deuce</strong>.
+          </div>
+        </div>
+
+        <div class="info-section">
+          <div class="info-label">What is an Advantage?</div>
+          <div class="info-text">
+            After a deuce, <strong>a player must win 2 consecutive points to win the game</strong>.
+          </div>
+        </div>
+
+        <div class="bubble-note">Remember the win-by-2 points rule!</div>
+      </div>
+
+      <!-- Scoreboard Simulation -->
+      <div class="timeline-box">
+        <div class="timeline-header">
+          <div class="timeline-label">Let’s See This in Action!</div>
+          <div class="timeline-instruction">
+            Use the buttons below to simulate who scores each point.
+          </div>
+        </div>
+
+        <button class="btn-simulate" onclick="score(1)">Player 1 scores</button>
+        <button class="btn-simulate" onclick="score(2)">Player 2 scores</button>
+
+        <div class="scoreboard">
+          <div class="score-row">
+            <div>Player 1</div>
+            <div id="p1-display">40</div>
+          </div>
+          <div class="score-row">
+            <div>Player 2</div>
+            <div id="p2-display">40</div>
+          </div>
+        </div>
+
+        <div class="status-message" id="status">Deuce</div>
+      </div>
+
+      <a href="learning4.html">
+        <button class="next-btn">Next</button>
+      </a>
+    </div>
+  </div>
+
+  <!-- Simulation Script -->
+  <script>
+    let state = "deuce";
+    let adv = null;
+
+    function score(player) {
+      const p1Display = document.getElementById("p1-display");
+      const p2Display = document.getElementById("p2-display");
+      const status = document.getElementById("status");
+
+      if (state === "deuce") {
+        state = "advantage";
+        adv = player;
+        if (player === 1) {
+          p1Display.textContent = "Ad";
+          p2Display.textContent = "40";
+        } else {
+          p2Display.textContent = "Ad";
+          p1Display.textContent = "40";
+        }
+        status.textContent = "Advantage Player " + player;
+      } else if (state === "advantage") {
+        if (player === adv) {
+          state = "win";
+          if (player === 1) {
+            p1Display.textContent = "Win";
+            p2Display.textContent = "";
+          } else {
+            p2Display.textContent = "Win";
+            p1Display.textContent = "";
+          }
+          status.textContent = "Player " + player + " wins!";
+        } else {
+          state = "deuce";
+          adv = null;
+          p1Display.textContent = "40";
+          p2Display.textContent = "40";
+          status.textContent = "Deuce";
+        }
+      } else if (state === "win") {
+        alert("Game is over. Refresh the page to try again.");
+      }
+    }
+  </script>
+</body>
+</html>
+
+
+
+

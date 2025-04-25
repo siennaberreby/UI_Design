@@ -1,87 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tennis Scoring Trainer - Quiz</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tennis Scoring Trainer - Quiz 4</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 </head>
-
 <body>
-    <div class="quiz-container">
-        <!-- Top Navigation -->
-        <div class="top-nav">
-            <div class="logo">
-                <span class="star">★</span>
-                <span class="logo-text">Tennis Scoring Trainer</span>
-            </div>
-            <div class="nav-links">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="learning.html" class="nav-link">Learning</a>
-                <a href="preview.html" class="nav-link active">Quiz</a>
-                <div class="nav-link-container">
-                    <a href="results.html" class="nav-link">Results</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Zone 3: Progress Bar -->
-        <div class="progress-section">
-            <h2 class="quiz-title">Quiz: Deuce & Advantage Drag & Drop</h2>
-            <div class="progress-container">
-                <span class="progress-label">PROGRESS</span>
-                <div class="progress-bar">
-                    <div class="progress-step active"></div>
-                    <div class="progress-step"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Zone 4: Quiz Question -->
-        <div class="quiz-question-container">
-            <h3 class="question-title">Drag the scoring terms into the correct sequence for both players.</h3>
-            <div class="drag-drop-container">
-                <div class="drop-zones">
-                    <div class="drop-row">
-                        <div class="drop-zone" data-position="0" data-correct="Player 1"></div>
-                        <div class="drop-zone" data-position="1" data-correct="Deuce"></div>
-                        <div class="drop-zone" data-position="2" data-correct="Advantage"></div>
-                        <div class="drop-zone" data-position="3" data-correct="Game/Win"></div>
-                    </div>
-                    <div class="drop-row">
-                        <div class="drop-zone" data-position="4" data-correct="Player 2"></div>
-                        <div class="drop-zone" data-position="5" data-correct="Deuce"></div>
-                        <div class="drop-zone" data-position="6" data-correct="Deuce"></div>
-                        <div class="drop-zone" data-position="7" data-correct="Lose"></div>
-                    </div>
-                </div>
-                <div class="word-bank-container">
-                    <span class="word-bank-label">Word Bank</span>
-                    <div class="word-bank">
-                        <div class="drag-item" draggable="true" data-item="Player 1">Player 1</div>
-                        <div class="drag-item" draggable="true" data-item="Player 2">Player 2</div>
-                        <div class="drag-item" draggable="true" data-item="Deuce">Deuce</div>
-                        <div class="drag-item" draggable="true" data-item="Advantage">Advantage</div>
-                        <div class="drag-item" draggable="true" data-item="Game/Win">Game/Win</div>
-                        <div class="drag-item" draggable="true" data-item="Lose">Lose</div>
-                    </div>
-                </div>
-                <div class="feedback-container drag-feedback">
-                    <div class="feedback-correct">Correct sequence! You've got it right!</div>
-                    <div class="feedback-incorrect">Keep trying! Check the sequence again.</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Zone 5: Navigation -->
-        <div class="navigation-container">
-            <button class="nav-button prev-button">&lt;</button>
-            <span class="nav-text">Next: Point Progression Drag & Drop</span>
-            <button class="nav-button next-button" id="nextQuizBtn">&gt;</button>
-        </div>
+  <div class="quiz-container">
+    <!-- Top Navigation -->
+    <div class="top-nav">
+      <div class="logo">
+        <span class="star">★</span>
+        <span class="logo-text">Tennis Scoring Trainer</span>
+      </div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="learning1.html" class="nav-link">Learning</a>
+        <a href="preview.html" class="nav-link active">Quiz</a>
+        <a href="results.html" class="nav-link">Results</a>
+      </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Progress Bar -->
+    <div class="progress-section">
+      <h2 class="quiz-title">Quiz: Deuce & Advantage Drag & Drop</h2>
+      <div class="progress-container">
+        <span class="progress-label">PROGRESS</span>
+        <div class="progress-bar">
+          <div class="progress-step active"></div> <!-- quiz1 -->
+          <div class="progress-step active"></div> <!-- quiz2 -->
+          <div class="progress-step active"></div> <!-- quiz3 -->
+          <div class="progress-step active"></div> <!-- quiz4 -->
+          <div class="progress-step"></div> <!-- quiz5 -->
+          <div class="progress-step"></div> <!-- quiz6 -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz Question -->
+    <div class="quiz-question-container">
+      <h3 class="question-title">Drag the scoring terms into the correct sequence for both players.</h3>
+      <div class="drag-drop-container">
+        <div class="drop-zones">
+          <div class="drop-row">
+            <div class="drop-zone" data-position="0" data-correct="Player 1"></div>
+            <div class="drop-zone" data-position="1" data-correct="Deuce"></div>
+            <div class="drop-zone" data-position="2" data-correct="Advantage"></div>
+            <div class="drop-zone" data-position="3" data-correct="Game/Win"></div>
+          </div>
+          <div class="drop-row">
+            <div class="drop-zone" data-position="4" data-correct="Player 2"></div>
+            <div class="drop-zone" data-position="5" data-correct="Deuce"></div>
+            <div class="drop-zone" data-position="6" data-correct="Deuce"></div>
+            <div class="drop-zone" data-position="7" data-correct="Lose"></div>
+          </div>
+        </div>
+        <div class="word-bank-container">
+          <span class="word-bank-label">Word Bank</span>
+          <div class="word-bank">
+            <div class="drag-item" draggable="true" data-item="Player 1">Player 1</div>
+            <div class="drag-item" draggable="true" data-item="Player 2">Player 2</div>
+            <div class="drag-item" draggable="true" data-item="Deuce">Deuce</div>
+            <div class="drag-item" draggable="true" data-item="Advantage">Advantage</div>
+            <div class="drag-item" draggable="true" data-item="Game/Win">Game/Win</div>
+            <div class="drag-item" draggable="true" data-item="Lose">Lose</div>
+          </div>
+        </div>
+        <div class="feedback-container drag-feedback">
+          <div class="feedback-correct">Correct sequence! You've got it right!</div>
+          <div class="feedback-incorrect">Keep trying! Check the sequence again.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation-container">
+      <a href="quiz3.html" class="nav-button prev-button">&lt;</a>
+      <span class="nav-text">Next: Point Progression Drag & Drop</span>
+      <a href="quiz5.html" class="nav-button next-button">&gt;</a>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
+

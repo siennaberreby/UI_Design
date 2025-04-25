@@ -1,0 +1,384 @@
+/* Quiz pages styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+body {
+    background-color: #FFFFFF;
+}
+
+.quiz-container {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Top Navigation */
+.top-nav {
+    height: 10%;
+    min-height: 68px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 100px;
+    border-bottom: 1px solid #EFEFEF;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.star {
+    font-size: 24px;
+    color: #000000;
+}
+
+.logo-text {
+    font-size: 32px;
+    font-weight: 500;
+    color: #000000;
+}
+
+.nav-links {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #000000;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.nav-link-container {
+    background-color: #B9FF66;
+    padding: 0 7px;
+    border-radius: 7px;
+}
+
+/* Main Content */
+.main-content {
+    display: flex;
+    height: 90%;
+}
+
+.content-image {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.content-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.content-info {
+    width: 50%;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.content-title {
+    font-size: 48px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.content-description {
+    font-size: 24px;
+    line-height: 1.5;
+    margin-bottom: 40px;
+}
+
+.button-group {
+    display: flex;
+    gap: 20px;
+}
+
+.btn {
+    padding: 12px 24px;
+    font-size: 20px;
+    border-radius: 8px;
+    border: 2px solid #000000;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #B9FF66;
+    color: #000000;
+}
+
+.btn-secondary {
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+/* Progress Section */
+.progress-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 100px;
+    height: 10%;
+    border-bottom: 1px solid #EFEFEF;
+}
+
+.quiz-title {
+    font-size: 32px;
+    font-weight: 500;
+}
+
+.progress-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.progress-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #666666;
+}
+
+.progress-bar {
+    display: flex;
+    gap: 10px;
+}
+
+.progress-step {
+    width: 60px;
+    height: 12px;
+    background-color: #DDDDDD;
+    border-radius: 6px;
+}
+
+.progress-step.active {
+    background-color: #B9FF66;
+}
+
+/* Quiz Question Container */
+.quiz-question-container {
+    padding: 40px 100px;
+    height: 50%;
+}
+
+.question-title {
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.options-container {
+    display: flex;
+    gap: 30px;
+}
+
+.options-list {
+    width: 75%;
+    background-color: #F5F5F5;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.option:hover {
+    background-color: #EBEBEB;
+}
+
+.option label {
+    margin-left: 15px;
+    font-size: 20px;
+}
+
+.feedback-container {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.feedback-correct, .feedback-incorrect {
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-size: 18px;
+    display: none;
+}
+
+.feedback-correct {
+    background-color: #B9FF66;
+}
+
+.feedback-incorrect {
+    background-color: #FFD6D6;
+}
+
+/* Show feedback when option selected */
+.option.selected-correct + .feedback-container .feedback-correct {
+    display: block;
+}
+
+.option.selected-incorrect + .feedback-container .feedback-incorrect {
+    display: block;
+}
+
+/* Navigation Container */
+.navigation-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 100px;
+    height: 30%;
+}
+
+.nav-text {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.nav-button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #B9FF66;
+    border: none;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+    opacity: 0.9;
+}
+
+.nav-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Drag and Drop Styles */
+.drag-drop-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.drop-zones {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.drop-row, .drop-zones.single-row {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.drop-zone {
+    width: 140px;
+    height: 60px;
+    background-color: #F5F5F5;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed #CCCCCC;
+}
+
+.word-bank-container {
+    background-color: #F5F5F5;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.word-bank-label {
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.word-bank {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.drag-item {
+    background-color: #FFFFFF;
+    border: 2px solid #000000;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: grab;
+    user-select: none;
+}
+
+.drag-item:active {
+    cursor: grabbing;
+}
+
+/* Drag Feedback */
+.drag-feedback {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.drag-feedback .feedback-correct,
+.drag-feedback .feedback-incorrect {
+    width: 100%;
+    text-align: center;
+}
+
+/* Pyramid Exercise */
+.pyramid-container {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+
+.pyramid-exercise {
+    width: 600px;
+    height: 400px;
+    background-color: #F5F5F5;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 

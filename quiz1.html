@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tennis Scoring Trainer - Quiz</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="quiz-container">
+        <!-- Zone 1 and 2: Top Navigation -->
+        <div class="top-nav">
+            <div class="logo">
+                <span class="star">★</span>
+                <span class="logo-text">Tennis Scoring Trainer</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link">Home</a>
+                <a href="#" class="nav-link">Learning</a>
+                <a href="#" class="nav-link">Quiz</a>
+                <div class="nav-link-container">
+                    <a href="#" class="nav-link active">Results</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Zone 3: Progress Bar -->
+        <div class="progress-section">
+            <h2 class="quiz-title">Quiz: Point Progression</h2>
+            <div class="progress-container">
+                <span class="progress-label">PROGRESS</span>
+                <div class="progress-bar">
+                    <div class="progress-step active"></div>
+                    <div class="progress-step"></div>
+                    <div class="progress-step"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Zone 4: Quiz Question -->
+        <div class="quiz-question-container">
+            <h3 class="question-title">The score is 30-30. A wins the point. What's the new score?</h3>
+            <div class="options-container">
+                <div class="options-list">
+                    <div class="option" data-correct="true">
+                        <input type="radio" name="answer" id="option-a">
+                        <label for="option-a">a) 40-30</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="answer" id="option-b">
+                        <label for="option-b">b) Deuce</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="answer" id="option-c">
+                        <label for="option-c">c) 30-40</label>
+                    </div>
+                </div>
+                <div class="feedback-container">
+                    <div class="feedback-correct">Correct! Player A now has 40!</div>
+                    <div class="feedback-incorrect">Incorrect! Please try again!</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Zone 5: Navigation -->
+        <div class="navigation-container">
+            <button class="nav-button prev-button">&lt;</button>
+            <span class="nav-text">Next: Deuce Scenario</span>
+            <button class="nav-button next-button" id="nextQuizBtn">&gt;</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

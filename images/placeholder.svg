@@ -1,0 +1,26 @@
+<svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="600" height="400" fill="#88c363"/>
+  
+  <!-- Court outline -->
+  <rect x="50" y="50" width="500" height="300" fill="#65ad41" stroke="#ffffff" stroke-width="2"/>
+  
+  <!-- Court lines -->
+  <line x1="50" y1="200" x2="550" y2="200" stroke="#ffffff" stroke-width="2"/>
+  <line x1="300" y1="50" x2="300" y2="350" stroke="#ffffff" stroke-width="2"/>
+  
+  <!-- Service boxes -->
+  <line x1="150" y1="50" x2="150" y2="350" stroke="#ffffff" stroke-width="2"/>
+  <line x1="450" y1="50" x2="450" y2="350" stroke="#ffffff" stroke-width="2"/>
+  <line x1="150" y1="125" x2="300" y2="125" stroke="#ffffff" stroke-width="2"/>
+  <line x1="300" y1="125" x2="450" y2="125" stroke="#ffffff" stroke-width="2"/>
+  <line x1="150" y1="275" x2="300" y2="275" stroke="#ffffff" stroke-width="2"/>
+  <line x1="300" y1="275" x2="450" y2="275" stroke="#ffffff" stroke-width="2"/>
+  
+  <!-- Net -->
+  <line x1="50" y1="200" x2="550" y2="200" stroke="#ffffff" stroke-width="4"/>
+  
+  <!-- Text -->
+  <text x="300" y="20" font-family="Arial" font-size="16" fill="#000000" text-anchor="middle">Tennis Court</text>
+  <text x="300" y="380" font-family="Arial" font-size="12" fill="#000000" text-anchor="middle">Tennis Scoring Trainer</text>
+</svg> 

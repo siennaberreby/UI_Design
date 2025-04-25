@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tennis Scoring Trainer – The Big Picture</title>
+  <title>Tennis Scoring Trainer – Point Progression</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
@@ -60,21 +60,17 @@
       margin: 30px 0;
     }
 
-    .next-btn {
-      background-color: #000;
-      color: #fff;
-      padding: 12px 20px;
-      font-size: 16px;
-      border: 2px solid #000;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 40px;
-    }
-
     .info-box {
       background-color: #F5F5F5;
       border-radius: 24px;
       padding: 40px;
+    }
+
+    .info-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 30px;
     }
 
     .info-title {
@@ -83,7 +79,12 @@
       background-color: #B9FF66;
       display: inline-block;
       padding: 4px 10px;
-      margin-bottom: 20px;
+    }
+
+    .info-note {
+      font-size: 16px;
+      font-weight: 500;
+      max-width: 360px;
     }
 
     .graphic-bar {
@@ -112,22 +113,22 @@
       font-size: 20px;
     }
 
-    .explanation-box {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-      color: #333;
+    .bubble {
+      background-color: white;
+      border-radius: 16px;
+      border: 1.5px solid #000;
+      padding: 18px;
       max-width: 600px;
       margin: 0 auto;
       display: none;
+      font-size: 16px;
     }
 
-    .explanation-box.active {
+    .bubble.active {
       display: block;
     }
 
+    /* Align progress in nav */
     .top-nav {
       justify-content: space-between;
       align-items: center;
@@ -152,7 +153,7 @@
       <div class="nav-right">
         <div class="nav-links">
           <a href="index.html" class="nav-link">Home</a>
-          <a href="learning1.html" class="nav-link active">Learning</a>
+          <a href="learning2.html" class="nav-link active">Learning</a>
           <a href="preview.html" class="nav-link">Quiz</a>
           <a href="results.html" class="nav-link">Results</a>
         </div>
@@ -160,7 +161,7 @@
           <span style="font-size: 14px; font-weight: 500;">PROGRESS</span>
           <div class="bar">
             <div class="bar-step active"></div>
-            <div class="bar-step"></div>
+            <div class="bar-step active"></div>
             <div class="bar-step"></div>
             <div class="bar-step"></div>
           </div>
@@ -170,11 +171,11 @@
 
     <!-- Page Content -->
     <div class="learning-content">
-      <h1 class="page-title">The Big Picture</h1>
+      <h1 class="page-title">Point Progression</h1>
 
       <div class="objective-title">Learning Objective:</div>
       <div class="objective-description">
-        Understand how points stack up into games, games into sets, and sets into matches.
+        Understand the order of points and how to win a game.
       </div>
 
       <a href="preview.html">
@@ -182,38 +183,40 @@
       </a>
 
       <div class="info-box">
-        <div class="info-title">Remember the Tennis Scoring</div>
-
-        <div class="graphic-bar">
-          <span class="graphic-step" onclick="showExplanation('point')">Point</span>
-          <span class="arrow">→</span>
-          <span class="graphic-step" onclick="showExplanation('game')">Game</span>
-          <span class="arrow">→</span>
-          <span class="graphic-step" onclick="showExplanation('set')">Set</span>
-          <span class="arrow">→</span>
-          <span class="graphic-step" onclick="showExplanation('match')">Match</span>
+        <div class="info-header">
+          <div class="info-title">Remember How Points are Counted</div>
+          <div class="info-note">
+            A player must win 4 points to win a game — but the points aren’t counted like 1, 2, 3. Instead, they are:
+          </div>
         </div>
 
-        <div id="point" class="explanation-box active">Points are the smallest unit of scoring. You need 4 points to win a game, but must win by 2.</div>
-        <div id="game" class="explanation-box">You win a game by winning enough points. Typically, you need to win 6 games to win a set.</div>
-        <div id="set" class="explanation-box">Sets are made of games. You usually need to win 2 sets to win a match (3 in Grand Slams).</div>
-        <div id="match" class="explanation-box">The match is won by winning the required number of sets. That’s how you win the whole thing!</div>
-      </div>
+        <div class="graphic-bar">
+          <span class="graphic-step" onclick="showPoint('love')">Love (0)</span>
+          <span class="arrow">→</span>
+          <span class="graphic-step" onclick="showPoint('15')">15</span>
+          <span class="arrow">→</span>
+          <span class="graphic-step" onclick="showPoint('30')">30</span>
+          <span class="arrow">→</span>
+          <span class="graphic-step" onclick="showPoint('40')">40</span>
+          <span class="arrow">→</span>
+          <span class="graphic-step" onclick="showPoint('game')">Game</span>
+        </div>
 
-      <a href="learning2.html">
-        <button class="next-btn">Next</button>
-      </a>
+        <div id="love" class="bubble active">Love represents 0 points.</div>
+        <div id="15" class="bubble">This is the first point a player earns.</div>
+        <div id="30" class="bubble">This is the second point a player earns, and halfway to winning the game.</div>
+        <div id="40" class="bubble">When players tie 40–40, it is called a deuce.</div>
+        <div id="game" class="bubble">To win by an adequate margin, a player must lead by 2 points (e.g., 40–30 is a win, but not 15–30).</div>
+      </div>
     </div>
   </div>
 
   <script>
-    function showExplanation(id) {
-      const all = document.querySelectorAll('.explanation-box');
-      all.forEach(box => box.classList.remove('active'));
+    function showPoint(id) {
+      const bubbles = document.querySelectorAll('.bubble');
+      bubbles.forEach(b => b.classList.remove('active'));
       document.getElementById(id).classList.add('active');
     }
   </script>
 </body>
 </html>
-
-

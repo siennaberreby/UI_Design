@@ -25,54 +25,60 @@
 
     <!-- Progress Bar -->
     <div class="progress-section">
-      <h2 class="quiz-title">Quiz: Deuce & Advantage Drag & Drop</h2>
+      <h2 class="quiz-title">Quiz: Tiebreak Rules</h2>
       <div class="progress-container">
         <span class="progress-label">PROGRESS</span>
         <div class="progress-bar">
-          <div class="progress-step active"></div> <!-- quiz1 -->
-          <div class="progress-step active"></div> <!-- quiz2 -->
-          <div class="progress-step active"></div> <!-- quiz3 -->
-          <div class="progress-step active"></div> <!-- quiz4 -->
-          <div class="progress-step"></div> <!-- quiz5 -->
-          <div class="progress-step"></div> <!-- quiz6 -->
+          <div class="progress-step active"></div>
+          <div class="progress-step active"></div>
+          <div class="progress-step active"></div>
+          <div class="progress-step active"></div>
+          <div class="progress-step"></div>
+          <div class="progress-step"></div>
         </div>
       </div>
     </div>
 
     <!-- Quiz Question -->
     <div class="quiz-question-container">
-      <h3 class="question-title">Drag the scoring terms into the correct sequence for both players.</h3>
-      <div class="drag-drop-container">
-        <div class="drop-zones">
-          <div class="drop-row">
-            <div class="drop-zone" data-position="0" data-correct="Player 1"></div>
-            <div class="drop-zone" data-position="1" data-correct="Deuce"></div>
-            <div class="drop-zone" data-position="2" data-correct="Advantage"></div>
-            <div class="drop-zone" data-position="3" data-correct="Game/Win"></div>
+      <h3 class="question-title">
+        In which of the following cases would a tiebreak be played in tennis?
+      </h3>
+      <div class="options-container">
+        <div class="options-list">
+          <div class="option">
+            <input type="radio" name="answer" id="option-a">
+            <label for="option-a">a) The score in a set is 5–5.</label>
           </div>
-          <div class="drop-row">
-            <div class="drop-zone" data-position="4" data-correct="Player 2"></div>
-            <div class="drop-zone" data-position="5" data-correct="Deuce"></div>
-            <div class="drop-zone" data-position="6" data-correct="Deuce"></div>
-            <div class="drop-zone" data-position="7" data-correct="Lose"></div>
+          <div class="option" data-correct="true">
+            <input type="radio" name="answer" id="option-b">
+            <label for="option-b">b) The score in a set is 6–6.</label>
           </div>
-        </div>
-        <div class="word-bank-container">
-          <span class="word-bank-label">Word Bank</span>
-          <div class="word-bank">
-            <div class="drag-item" draggable="true" data-item="Player 1">Player 1</div>
-            <div class="drag-item" draggable="true" data-item="Player 2">Player 2</div>
-            <div class="drag-item" draggable="true" data-item="Deuce">Deuce</div>
-            <div class="drag-item" draggable="true" data-item="Advantage">Advantage</div>
-            <div class="drag-item" draggable="true" data-item="Game/Win">Game/Win</div>
-            <div class="drag-item" draggable="true" data-item="Lose">Lose</div>
+          <div class="option">
+            <input type="radio" name="answer" id="option-c">
+            <label for="option-c">c) The score in a set is 7–6.</label>
+          </div>
+          <div class="option">
+            <input type="radio" name="answer" id="option-d">
+            <label for="option-d">d) The score in a set is 5–4.</label>
           </div>
         </div>
-        <div class="feedback-container drag-feedback">
-          <div class="feedback-correct">Correct sequence! You've got it right!</div>
-          <div class="feedback-incorrect">Keep trying! Check the sequence again.</div>
+        <div class="feedback-container">
+          <div class="feedback-correct" style="display: none;">Correct! A tiebreak happens at 6–6.</div>
+          <div class="feedback-incorrect" style="display: none;">Incorrect! Read carefully below.</div>
         </div>
       </div>
+    </div>
+
+    <!-- Hidden Explanation -->
+    <div id="explanation" style="padding: 20px 100px; display: none;">
+      <h4 style="margin-bottom: 10px;">Explanation:</h4>
+      <ul style="text-align: left; line-height: 1.6; font-size: 18px;">
+        <li><strong>5–5</strong> — No tiebreak yet. Players continue playing.</li>
+        <li><strong>6–6</strong> — Yes, a tiebreak is played at 6–6 to decide the set.</li>
+        <li><strong>7–6</strong> — No tiebreak here. The set has already been won 7–6.</li>
+        <li><strong>5–4</strong> — No tiebreak. Players must reach 6 games with a 2-game margin.</li>
+      </ul>
     </div>
 
     <!-- Navigation -->
@@ -84,6 +90,31 @@
   </div>
 
   <script src="script.js"></script>
+  <script>
+    const options = document.querySelectorAll(".option");
+    const feedbackCorrect = document.querySelector(".feedback-correct");
+    const feedbackIncorrect = document.querySelector(".feedback-incorrect");
+    const explanation = document.getElementById("explanation");
+
+    options.forEach(option => {
+      option.addEventListener("click", () => {
+        if (option.hasAttribute("data-correct")) {
+          feedbackCorrect.style.display = "block";
+          feedbackIncorrect.style.display = "none";
+          explanation.style.display = "none";
+          // Save correct answer
+          let correct = Number(localStorage.getItem('correctAnswers') || 0);
+          localStorage.setItem('correctAnswers', correct + 1);
+        } else {
+          feedbackIncorrect.style.display = "block";
+          feedbackCorrect.style.display = "none";
+          explanation.style.display = "block"; // show explanation if wrong
+        }
+      });
+    });
+  </script>
 </body>
 </html>
+
+
 

@@ -25,7 +25,7 @@
 
     <!-- Progress Bar -->
     <div class="progress-section">
-      <h2 class="quiz-title">Quiz: Scoring Pyramid Fill-In</h2>
+      <h2 class="quiz-title">Quiz: Valid Final Scores</h2>
       <div class="progress-container">
         <span class="progress-label">PROGRESS</span>
         <div class="progress-bar">
@@ -41,24 +41,88 @@
 
     <!-- Quiz Question -->
     <div class="quiz-question-container">
-      <h3 class="question-title">Fill in the scoring pyramid. There are multiple correct answers.</h3>
-      <div class="pyramid-container">
-        <div class="pyramid-exercise">
-          <!-- Placeholder for future interactive exercise -->
-          <p style="text-align: center;">Pyramid exercise coming soon!</p>
+      <h3 class="question-title">
+        In a women’s Grand Slam match (best of 3 sets), which of these is a valid final score?
+      </h3>
+      <div class="options-container">
+        <div class="options-list">
+          <div class="option">
+            <input type="checkbox" id="option-a">
+            <label for="option-a">a) 6–0, 6–5</label>
+          </div>
+          <div class="option">
+            <input type="checkbox" id="option-b">
+            <label for="option-b">b) 2–6, 6–0</label>
+          </div>
+          <div class="option" data-correct="true">
+            <input type="checkbox" id="option-c">
+            <label for="option-c">c) 6–2, 5–7, 6–3</label>
+          </div>
+          <div class="option" data-correct="true">
+            <input type="checkbox" id="option-d">
+            <label for="option-d">d) 6–1, 6–2</label>
+          </div>
+        </div>
+        <div class="feedback-container">
+          <div class="feedback-correct" style="display: none;">Correct! Great understanding!</div>
+          <div class="feedback-incorrect" style="display: none;">Incorrect! See the full explanation below.</div>
         </div>
       </div>
+    </div>
+
+    <!-- Hidden Explanation -->
+    <div id="explanation" style="padding: 20px 100px; display: none;">
+      <h4 style="margin-bottom: 10px;">Explanation:</h4>
+      <ul style="text-align: left; line-height: 1.6; font-size: 18px;">
+        <li><strong>6–0, 6–5</strong> — Not valid. Must win a set by 2 games or via tiebreak at 7–6.</li>
+        <li><strong>2–6, 6–0</strong> — Not valid. Match still ongoing; 1–1 in sets.</li>
+        <li><strong>6–2, 5–7, 6–3</strong> — Valid. Winning 2 sets out of 3 ends the match.</li>
+        <li><strong>6–1, 6–2</strong> — Valid. Straight set win, 2–0.</li>
+      </ul>
     </div>
 
     <!-- Navigation -->
     <div class="navigation-container">
       <a href="quiz5.html" class="nav-button prev-button">&lt;</a>
       <span class="nav-text">Next: See Your Results</span>
-      <a href="results.html" class="nav-button next-button">&gt;</a>
+      <a href="results.html" class="nav-button next-button" id="nextQuizBtn">&gt;</a>
     </div>
   </div>
 
   <script src="script.js"></script>
+  <script>
+    const checkboxes = document.querySelectorAll("input[type='checkbox']");
+    const feedbackCorrect = document.querySelector(".feedback-correct");
+    const feedbackIncorrect = document.querySelector(".feedback-incorrect");
+    const explanation = document.getElementById("explanation");
+
+    document.querySelectorAll(".option").forEach(option => {
+      option.addEventListener("click", () => {
+        const selectedAnswers = {
+          a: document.getElementById("option-a").checked,
+          b: document.getElementById("option-b").checked,
+          c: document.getElementById("option-c").checked,
+          d: document.getElementById("option-d").checked,
+        };
+
+        // Correct: Only c and d checked
+        const correct = selectedAnswers.c && selectedAnswers.d && !selectedAnswers.a && !selectedAnswers.b;
+
+        if (correct) {
+          feedbackCorrect.style.display = "block";
+          feedbackIncorrect.style.display = "none";
+          explanation.style.display = "none";
+          // Save correct answer
+          let current = Number(localStorage.getItem('correctAnswers') || 0);
+          localStorage.setItem('correctAnswers', current + 1);
+        } else {
+          feedbackIncorrect.style.display = "block";
+          feedbackCorrect.style.display = "none";
+          explanation.style.display = "block";
+        }
+      });
+    });
+  </script>
 </body>
 </html>
 

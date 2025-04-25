@@ -1,49 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tennis Scoring Trainer - Quiz</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tennis Scoring Trainer – Home</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="quiz-container">
-        <div class="top-nav">
-            <div class="logo">
-                <span class="star">★</span>
-                <span class="logo-text">Tennis Scoring Trainer</span>
-            </div>
-            <div class="nav-links">
-                <a href="#" class="nav-link">Home</a>
-                <a href="#" class="nav-link">Learning</a>
-                <a href="#" class="nav-link">Quiz</a>
-                <div class="nav-link-container">
-                    <a href="#" class="nav-link active">Results</a>
-                </div>
-            </div>
+  <div class="quiz-container">
+    <div class="top-nav">
+      <div class="logo">
+        <span class="star">★</span>
+        <span class="logo-text">Tennis Scoring Trainer</span>
+      </div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="learning.html" class="nav-link">Learning</a>
+        <a href="preview.html" class="nav-link">Quiz</a>
+        <div class="nav-link-container">
+          <a href="results.html" class="nav-link bordered">Results</a>
         </div>
-
-        <!-- Zone 3 and 4: Main Content -->
-        <div class="main-content">
-            <div class="content-image">
-                <!-- Using SVG placeholder image -->
-                <img src="images/placeholder.svg" alt="Tennis Court">
-            </div>
-            <div class="content-info">
-                <h1 class="content-title">Congrats!</h1>
-                <p class="content-description">
-                    You've learned the basics - now see how well you can apply them in match situations.
-                    Don't worry if you don't get them all right!
-                </p>
-                <div class="button-group">
-                    <button class="btn btn-primary" id="startQuizBtn">Start Quiz</button>
-                    <button class="btn btn-secondary">Back to Learning</button>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
 
-    <script src="script.js"></script>
+    <div class="main-content">
+      <div class="content-info">
+        <h1 class="content-title">Welcome to <br><span class="bold-text">Tennis Scoring Trainer</span></h1>
+        <p class="content-description">
+          Learn how points lead to games, games to sets, and sets to matches with ease.
+        </p>
+        <div class="button-group">
+          <a href="learning.html"><button class="btn btn-primary">Start Learning</button></a>
+        </div>
+      </div>
+      <div class="content-image">
+        <img src="images/tennis.png" alt="Tennis illustration">
+      </div>
+    </div>
+  </div>
 </body>
-</html> 
+</html>

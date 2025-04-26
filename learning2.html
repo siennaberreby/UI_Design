@@ -32,6 +32,11 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      position: absolute;
+      position: absolute;
+    top: 110px; 
+    right: 277px; 
+    margin-left: 0;
     }
 
     .bar {
@@ -187,6 +192,7 @@
       <div class="objective-description">
         Understand the order of points and how to win a game.
       </div>
+      <hr style="border-bottom: 1px solid #EFEFEF;" />
 
       <a href="preview.html">
         <button class="skip-btn">Skip to Quiz</button>
@@ -201,17 +207,17 @@
         </div>
 
         <div class="graphic-bar">
-          <span class="graphic-step" onclick="showPoint('love')">Love (0)</span>
+          <span class="graphic-step" onclick="showPoint('love'); this.style.color='#B9FF66';">Love (0)</span>
           <span class="arrow">→</span>
-          <span class="graphic-step" onclick="showPoint('15')">15</span>
+          <span class="graphic-step" onclick="showPoint('15'); this.style.color='#B9FF66';">15</span>
           <span class="arrow">→</span>
-          <span class="graphic-step" onclick="showPoint('30')">30</span>
+          <span class="graphic-step" onclick="showPoint('30'); this.style.color='#B9FF66';">30</span>
           <span class="arrow">→</span>
-          <span class="graphic-step" onclick="showPoint('40')">40</span>
+          <span class="graphic-step" onclick="showPoint('40'); this.style.color='#B9FF66';">40</span>
           <span class="arrow">→</span>
-          <span class="graphic-step" onclick="showPoint('game')">Game</span>
-        </div>
-
+          <span class="graphic-step" onclick="showPoint('game'); this.style.color='#B9FF66';">Game</span>
+      </div>
+      
         <div id="love" class="bubble active">Love represents 0 points.</div>
         <div id="15" class="bubble">This is the first point a player earns.</div>
         <div id="30" class="bubble">This is the second point a player earns, and halfway to winning the game.</div>

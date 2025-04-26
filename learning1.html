@@ -32,8 +32,12 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      position: absolute;
+      position: absolute;
+    top: 110px; 
+    right: 277px; 
+    margin-left: 0;
     }
-
     .bar {
       display: flex;
       gap: 8px;
@@ -185,15 +189,15 @@
         <div class="info-title">Remember the Tennis Scoring</div>
 
         <div class="graphic-bar">
-          <span class="graphic-step" onclick="showExplanation('point')">Point</span>
+          <span class="graphic-step" onclick="this.style.color='#B9FF66';">Point</span>
           <span class="arrow">→</span>
-          <span class="graphic-step" onclick="showExplanation('game')">Game</span>
+          <span class="graphic-step" onclick="this.style.color='#B9FF66';">Game</span>
           <span class="arrow">→</span>
-          <span class="graphic-step" onclick="showExplanation('set')">Set</span>
+          <span class="graphic-step" onclick="this.style.color='#B9FF66';">Set</span>
           <span class="arrow">→</span>
-          <span class="graphic-step" onclick="showExplanation('match')">Match</span>
+          <span class="graphic-step" onclick="this.style.color='#B9FF66';">Match</span>
         </div>
-
+        
         <div id="point" class="explanation-box active">Points are the smallest unit of scoring. You need 4 points to win a game, but must win by 2.</div>
         <div id="game" class="explanation-box">You win a game by winning enough points. Typically, you need to win 6 games to win a set.</div>
         <div id="set" class="explanation-box">Sets are made of games. You usually need to win 2 sets to win a match (3 in Grand Slams).</div>
@@ -215,5 +219,3 @@
   </script>
 </body>
 </html>
-
-

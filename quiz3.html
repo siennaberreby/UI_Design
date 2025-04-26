@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tennis Scoring Trainer - Quiz 3</title>
+  <title>Tennis Scoring Trainer - Quiz 1</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 </head>
@@ -25,13 +25,13 @@
 
     <!-- Progress Bar -->
     <div class="progress-section">
-      <h2 class="quiz-title">Quiz: Tiebreak Rules</h2>
+      <h2 class="quiz-title">Quiz: Point Progression</h2>
       <div class="progress-container">
         <span class="progress-label">PROGRESS</span>
         <div class="progress-bar">
           <div class="progress-step active"></div>
-          <div class="progress-step active"></div>
-          <div class="progress-step active"></div>
+          <div class="progress-step"></div>
+          <div class="progress-step"></div>
           <div class="progress-step"></div>
           <div class="progress-step"></div>
           <div class="progress-step"></div>
@@ -42,21 +42,20 @@
     <!-- Quiz Question -->
     <div class="quiz-question-container">
       <h3 class="question-title">
-        In tennis scoring, what does 'Love' represent?
-      </h3>
+        The score is 30-30. Player A wins the point. What's the new score?      </h3>
       <div class="options-container">
         <div class="options-list">
-          <div class="option">
+          <div class="option"  data-correct="true">
             <input type="radio" name="answer" id="option-a">
-            <label for="option-a">a) Zero.</label>
+            <label for="option-a">a) 40-30.</label>
           </div>
-          <div class="option" data-correct="true">
+          <div class="option">
             <input type="radio" name="answer" id="option-b">
-            <label for="option-b">b) Tie.</label>
+            <label for="option-b">b) Deuce.</label>
           </div>
           <div class="option">
             <input type="radio" name="answer" id="option-c">
-            <label for="option-c">c) First Point.</label>
+            <label for="option-c">c) 30-40.</label>
           </div>
           <!--<div class="option">
             <input type="radio" name="answer" id="option-d">
@@ -83,9 +82,9 @@
 
     <!-- Navigation -->
     <div class="navigation-container">
-      <a href="quiz2.html" class="nav-button prev-button">&lt;</a>
+      <a href="quiz1.html" class="nav-button prev-button">&lt;</a>
       <span class="nav-text">Next: Point Progression Drag & Drop</span>
-      <a href="quiz4.html" class="nav-button next-button">&gt;</a>
+      <a href="quiz3.html" class="nav-button next-button">&gt;</a>
     </div>
   </div>
 

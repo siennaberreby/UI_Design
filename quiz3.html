@@ -25,37 +25,43 @@
 
     <!-- Progress Bar -->
     <div class="progress-section">
-      <h2 class="quiz-title">Quiz: What Does Love Mean?</h2>
+      <h2 class="quiz-title">Quiz: Tiebreak Rules</h2>
       <div class="progress-container">
         <span class="progress-label">PROGRESS</span>
         <div class="progress-bar">
-          <div class="progress-step active"></div> <!-- quiz1 -->
-          <div class="progress-step active"></div> <!-- quiz2 -->
-          <div class="progress-step active"></div> <!-- quiz3 -->
-          <div class="progress-step"></div> <!-- quiz4 -->
-          <div class="progress-step"></div> <!-- quiz5 -->
-          <div class="progress-step"></div> <!-- quiz6 -->
+          <div class="progress-step active"></div>
+          <div class="progress-step active"></div>
+          <div class="progress-step active"></div>
+          <div class="progress-step"></div>
+          <div class="progress-step"></div>
+          <div class="progress-step"></div>
         </div>
       </div>
     </div>
 
     <!-- Quiz Question -->
     <div class="quiz-question-container">
-      <h3 class="question-title">In tennis scoring, what does 'Love' represent?</h3>
+      <h3 class="question-title">
+        In tennis scoring, what does 'Love' represent?
+      </h3>
       <div class="options-container">
         <div class="options-list">
-          <div class="option" data-correct="true">
-            <input type="radio" name="answer" id="option-a">
-            <label for="option-a">a) Zero</label>
-          </div>
           <div class="option">
+            <input type="radio" name="answer" id="option-a">
+            <label for="option-a">a) Zero.</label>
+          </div>
+          <div class="option" data-correct="true">
             <input type="radio" name="answer" id="option-b">
-            <label for="option-b">b) Tie</label>
+            <label for="option-b">b) Tie.</label>
           </div>
           <div class="option">
             <input type="radio" name="answer" id="option-c">
-            <label for="option-c">c) First Point</label>
+            <label for="option-c">c) First Point.</label>
           </div>
+          <!--<div class="option">
+            <input type="radio" name="answer" id="option-d">
+            <label for="option-d">d) The score in a set is 5–4.</label>
+          </div>-->
         </div>
         <div class="feedback-container">
           <div class="feedback-correct">Correct!</div>
@@ -64,14 +70,51 @@
       </div>
     </div>
 
+    <!-- Hidden Explanation -->
+    <!--<div id="explanation" style="padding: 20px 100px; display: none;">
+      <h4 style="margin-bottom: 10px;">Explanation:</h4>
+      <ul style="text-align: left; line-height: 1.6; font-size: 18px;">
+        <li><strong>5–5</strong> — No tiebreak yet. Players continue playing.</li>
+        <li><strong>6–6</strong> — Yes, a tiebreak is played at 6–6 to decide the set.</li>
+        <li><strong>7–6</strong> — No tiebreak here. The set has already been won 7–6.</li>
+        <li><strong>5–4</strong> — No tiebreak. Players must reach 6 games with a 2-game margin.</li>
+      </ul>
+    </div>-->
+
     <!-- Navigation -->
     <div class="navigation-container">
       <a href="quiz2.html" class="nav-button prev-button">&lt;</a>
-      <span class="nav-text">Next: Deuce & Advantage Drag & Drop</span>
+      <span class="nav-text">Next: Point Progression Drag & Drop</span>
       <a href="quiz4.html" class="nav-button next-button">&gt;</a>
     </div>
   </div>
 
   <script src="script.js"></script>
+  <script>
+    const options = document.querySelectorAll(".option");
+    const feedbackCorrect = document.querySelector(".feedback-correct");
+    const feedbackIncorrect = document.querySelector(".feedback-incorrect");
+    const explanation = document.getElementById("explanation");
+
+    options.forEach(option => {
+      option.addEventListener("click", () => {
+        if (option.hasAttribute("data-correct")) {
+          feedbackCorrect.style.display = "block";
+          feedbackIncorrect.style.display = "none";
+          explanation.style.display = "none";
+          // Save correct answer
+          let correct = Number(localStorage.getItem('correctAnswers') || 0);
+          localStorage.setItem('correctAnswers', correct + 1);
+        } else {
+          feedbackIncorrect.style.display = "block";
+          feedbackCorrect.style.display = "none";
+          explanation.style.display = "block"; // show explanation if wrong
+        }
+      });
+    });
+  </script>
 </body>
 </html>
+
+
+

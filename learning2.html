@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tennis Scoring Trainer – Point Progression</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -24,7 +24,7 @@
 
     .objective-description {
       font-size: 18px;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
       max-width: 600px;
     }
 
@@ -33,10 +33,9 @@
       align-items: center;
       gap: 10px;
       position: absolute;
-      position: absolute;
-    top: 110px; 
-    right: 277px; 
-    margin-left: 0;
+      top: 115px;
+      right: 215px;
+      margin-left: 0;
     }
 
     .bar {
@@ -46,7 +45,7 @@
 
     .bar-step {
       width: 40px;
-      height: 16px;
+      height: 8px;
       border-radius: 6px;
       background-color: #eee;
     }
@@ -62,7 +61,7 @@
       border: 2px solid #000;
       border-radius: 8px;
       cursor: pointer;
-      margin: 30px 0;
+      margin-bottom: 62px;
     }
 
     .next-btn {
@@ -118,11 +117,15 @@
 
     .graphic-step {
       cursor: pointer;
-      transition: opacity 0.2s ease;
+      transition: opacity 0.2s ease, color 0.2s ease;
     }
 
     .graphic-step:hover {
       opacity: 0.8;
+    }
+
+    .graphic-step.active {
+      color: #B9FF66;
     }
 
     .arrow {
@@ -192,7 +195,6 @@
       <div class="objective-description">
         Understand the order of points and how to win a game.
       </div>
-      <hr style="border-bottom: 1px solid #EFEFEF;" />
 
       <a href="preview.html">
         <button class="skip-btn">Skip to Quiz</button>
@@ -207,17 +209,17 @@
         </div>
 
         <div class="graphic-bar">
-          <span class="graphic-step" onclick="showPoint('love'); this.style.color='#B9FF66';">Love (0)</span>
+          <span class="graphic-step" onclick="showPoint('love', this)">Love (0)</span>
           <span class="arrow">→</span>
-          <span class="graphic-step" onclick="showPoint('15'); this.style.color='#B9FF66';">15</span>
+          <span class="graphic-step" onclick="showPoint('15', this)">15</span>
           <span class="arrow">→</span>
-          <span class="graphic-step" onclick="showPoint('30'); this.style.color='#B9FF66';">30</span>
+          <span class="graphic-step" onclick="showPoint('30', this)">30</span>
           <span class="arrow">→</span>
-          <span class="graphic-step" onclick="showPoint('40'); this.style.color='#B9FF66';">40</span>
+          <span class="graphic-step" onclick="showPoint('40', this)">40</span>
           <span class="arrow">→</span>
-          <span class="graphic-step" onclick="showPoint('game'); this.style.color='#B9FF66';">Game</span>
-      </div>
-      
+          <span class="graphic-step" onclick="showPoint('game', this)">Game</span>
+        </div>
+        
         <div id="love" class="bubble active">Love represents 0 points.</div>
         <div id="15" class="bubble">This is the first point a player earns.</div>
         <div id="30" class="bubble">This is the second point a player earns, and halfway to winning the game.</div>
@@ -232,12 +234,14 @@
   </div>
 
   <script>
-    function showPoint(id) {
+    function showPoint(id, element) {
       const bubbles = document.querySelectorAll('.bubble');
-      bubbles.forEach(b => b.classList.remove('active'));
+      bubbles.forEach(bubble => bubble.classList.remove('active'));
       document.getElementById(id).classList.add('active');
+      const steps = document.querySelectorAll('.graphic-step');
+      steps.forEach(step => step.classList.remove('active'));
+      element.classList.add('active');
     }
   </script>
 </body>
 </html>
-

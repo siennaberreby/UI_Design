@@ -77,6 +77,55 @@
       align-items: center;
       gap: 30px;
     }
+
+    #stats-container {
+      text-align: center;
+      margin: 40px auto;
+      max-width: 800px;
+    }
+
+    #stats-container h2 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 30px;
+      color: #000;
+    }
+
+    .stats-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      background-color: #fff;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .stats-table th,
+    .stats-table td {
+      padding: 15px 20px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .stats-table th {
+      color: #000;
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .stats-table td {
+      font-size: 16px;
+      color: #333;
+    }
+
+    .stats-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .stats-table tr:hover {
+      background-color: #f5f5f5;
+    }
   </style>
 </head>
 <body>
@@ -106,6 +155,10 @@
         <!-- Final score will be inserted here -->
       </div>
 
+      <div id="stats-container">
+        <!-- Statistics will be displayed here -->
+      </div>
+
       <div class="button-group">
         <a href="preview.html" class="btn-results btn-quiz">Retake Quiz</a>
         <a href="index.html" class="btn-results btn-home">Return Home</a>
@@ -113,11 +166,24 @@
     </div>
   </div>
 
+  <div class="navigation-buttons">
+    <a href="index.html" class="button">Back to Home</a>
+  </div>
+
   <script>
     // Calculate and show score
-    const correctAnswers = localStorage.getItem('correctAnswers') || 0;
+    const quizResults = JSON.parse(localStorage.getItem('quizResults') || '{}');
+    const totalCorrect = Object.values(quizResults).reduce((sum, score) => sum + score, 0);
     const totalQuestions = 6;
-    document.getElementById('score').innerText = `You got ${correctAnswers}/${totalQuestions} correct!`;
+    document.getElementById('score').innerText = `You got ${totalCorrect}/${totalQuestions} correct!`;
+  </script>
+
+  <script src="script.js"></script>
+  <script>
+    // Display statistics when the page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      displayUserStats();
+    });
   </script>
 </body>
 </html>

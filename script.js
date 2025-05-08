@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const startQuizBtn = document.getElementById('startQuizBtn');
     if (startQuizBtn) {
         startQuizBtn.addEventListener('click', function() {
+            // Reset correct answers counter when starting a new quiz
+            localStorage.setItem('correctAnswers', '0');
             window.location.href = 'quiz1.html';
         });
     }
@@ -80,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Handle quiz options selection
     const options = document.querySelectorAll('.option');
     options.forEach(option => {
-        option.addEventListener('click', function() {
+        option.addEventListener('click', async function() {
             // Reset all options
             options.forEach(opt => {
                 opt.classList.remove('selected-correct');
@@ -91,6 +93,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const radioInput = this.querySelector('input[type="radio"]');
             radioInput.checked = true;
 
+            // Get current quiz ID from the page
+            const currentPage = window.location.pathname.split('/').pop();
+            const quizId = parseInt(currentPage.replace('quiz', '').replace('.html', ''));
+
             // Check if this is the correct answer
             if (this.dataset.correct === 'true') {
                 this.classList.add('selected-correct');
@@ -98,12 +104,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (nextQuizBtn) {
                     nextQuizBtn.disabled = false;
                 }
+                // Save quiz result
+                await handleQuizSubmission(quizId, 1);
             } else {
                 this.classList.add('selected-incorrect');
                 // Keep next button disabled if answer is incorrect
                 if (nextQuizBtn) {
                     nextQuizBtn.disabled = true;
                 }
+                // Save quiz result
+                await handleQuizSubmission(quizId, 0);
             }
         });
     });
@@ -223,6 +233,162 @@ function initDragAndDrop() {
                 dragFeedback.querySelector('.feedback-correct').style.display = 'none';
                 dragFeedback.querySelector('.feedback-incorrect').style.display = 'none';
             }
+        }
+    }
+}
+
+// Load quiz data from server
+async function loadQuizData(quizId) {
+    try {
+        const response = await fetch(`http://127.0.0.1:5001/api/quiz/${quizId}`);
+        if (!response.ok) {
+            throw new Error('Failed to load quiz data');
+        }
+        const quizData = await response.json();
+        return quizData;
+    } catch (error) {
+        console.error('Error loading quiz data:', error);
+        return null;
+    }
+}
+
+// Save user progress
+async function saveUserProgress(userId, materialId, status) {
+    try {
+        const response = await fetch('http://127.0.0.1:5001/api/progress', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                user_id: userId,
+                material_id: materialId,
+                status: status
+            })
+        });
+        if (!response.ok) {
+            throw new Error('Failed to save progress');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error saving progress:', error);
+        return null;
+    }
+}
+
+// Save test results
+async function saveQuizResult(userId, quizId, score) {
+    try {
+        const response = await fetch('http://127.0.0.1:5001/api/quiz-results', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                user_id: userId,
+                quiz_id: quizId,
+                score: score
+            })
+        });
+        if (!response.ok) {
+            throw new Error('Failed to save quiz result');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error saving quiz result:', error);
+        return null;
+    }
+}
+
+// Get user stats
+async function getUserStats(userId) {
+    try {
+        const response = await fetch(`http://127.0.0.1:5001/api/stats/${userId}`);
+        if (!response.ok) {
+            throw new Error('Failed to get user stats');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error getting user stats:', error);
+        return null;
+    }
+}
+
+// Modify existing quiz processing functions
+async function handleQuizSubmission(quizId, score) {
+    const userId = localStorage.getItem('userId') || 'default_user';
+    await saveQuizResult(userId, quizId, score);
+    
+    // Update local storage
+    const quizResults = JSON.parse(localStorage.getItem('quizResults') || '{}');
+    quizResults[quizId] = score;
+    localStorage.setItem('quizResults', JSON.stringify(quizResults));
+    
+    // Calculate total correct answers from quiz results
+    const totalCorrect = Object.values(quizResults).reduce((sum, score) => sum + score, 0);
+    localStorage.setItem('correctAnswers', totalCorrect.toString());
+}
+
+// Modify learning progress handling function
+async function handleLearningProgress(materialId) {
+    const userId = localStorage.getItem('userId') || 'default_user';
+    await saveUserProgress(userId, materialId, 'completed');
+    // Update local storage
+    const completedMaterials = JSON.parse(localStorage.getItem('completedMaterials') || '[]');
+    if (!completedMaterials.includes(materialId)) {
+        completedMaterials.push(materialId);
+        localStorage.setItem('completedMaterials', JSON.stringify(completedMaterials));
+    }
+}
+
+// Add function to display statistics
+async function displayUserStats() {
+    const userId = localStorage.getItem('userId') || 'default_user';
+    const stats = await getUserStats(userId);
+    if (stats) {
+        const statsContainer = document.getElementById('stats-container');
+        if (statsContainer) {
+            // Format the last activity time
+            let lastActivityTime = 'No activity yet';
+            if (stats.last_activity) {
+                const date = new Date(stats.last_activity);
+                // Check if the date is valid (not the default timestamp)
+                if (date.getFullYear() > 1970) {
+                    // Convert to Eastern Time
+                    lastActivityTime = date.toLocaleString('en-US', {
+                        timeZone: 'America/New_York',
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                        hour12: true
+                    });
+                }
+            }
+
+            statsContainer.innerHTML = `
+                <h2>Learning Statistics</h2>
+                <table class="stats-table">
+                    <tr>
+                        <th>Completed Learning Materials</th>
+                        <td>${stats.completed_materials}</td>
+                    </tr>
+                    <tr>
+                        <th>Number of Tests Completed</th>
+                        <td>${stats.total_quizzes}</td>
+                    </tr>
+                    <tr>
+                        <th>Average Score</th>
+                        <td>${stats.average_score.toFixed(2)}</td>
+                    </tr>
+                    <tr>
+                        <th>Last Activity Time</th>
+                        <td>${lastActivityTime}</td>
+                    </tr>
+                </table>
+            `;
         }
     }
 } 

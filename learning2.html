@@ -34,7 +34,7 @@
       gap: 10px;
       position: absolute;
       top: 115px;
-      right: 215px;
+      right: 115px;
       margin-left: 0;
     }
 
@@ -44,8 +44,8 @@
     }
 
     .bar-step {
-      width: 40px;
-      height: 8px;
+      width: 60px;
+      height: 5px;
       border-radius: 6px;
       background-color: #eee;
     }
@@ -64,22 +64,30 @@
       margin-bottom: 62px;
     }
 
-    .next-btn {
-      background-color: #000;
-      color: #fff;
+    .back-btn, .next-btn, .backMod-btn, .nextMod-btn {
+      background-color: #B9FF66;
+      color: black;
       padding: 12px 20px;
       font-size: 16px;
       border: 2px solid #000;
       border-radius: 8px;
       cursor: pointer;
       margin-top: 40px;
+      width: 60px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
+
+
     .info-box {
-      background-color: #F5F5F5;
-      border-radius: 24px;
-      padding: 40px;
-    }
+  background-color: #F5F5F5;
+  border-radius: 24px;
+  padding: 40px;
+  padding-bottom: 150px; 
+}
 
     .info-header {
       display: flex;
@@ -127,6 +135,14 @@
     .graphic-step.active {
       color: #B9FF66;
     }
+    
+    .explanation-circle {
+      display: none;
+    }
+    
+    .explanation-circle.active {
+      display: block;
+    }
 
     .arrow {
       font-size: 20px;
@@ -156,6 +172,13 @@
       display: flex;
       align-items: center;
       gap: 30px;
+    }
+    .instruction {
+      font-size: 17px;
+      display: inline-block;
+      padding: 4px 10px;
+      margin-bottom: 20px;
+      margin-left:15px;
     }
   </style>
 </head>
@@ -187,9 +210,8 @@
       </div>
     </div>
 
-    <!-- Page Content -->
     <div class="learning-content">
-      <h1 class="page-title">Point Progression</h1>
+      <h1 class="page-title">Point Progression — <span style="font-weight: 800;">Part 1 of 3</span></h1>
 
       <div class="objective-title">Learning Objective:</div>
       <div class="objective-description">
@@ -202,46 +224,83 @@
 
       <div class="info-box">
         <div class="info-header">
-          <div class="info-title">Remember How Points are Counted</div>
-          <div class="info-note">
-            A player must win 4 points to win a game — but the points aren’t counted like 1, 2, 3. Instead, they are:
-          </div>
+            <div style="display: flex; align-items: center;">
+              <div class="info-title" style="margin-bottom: 200px;">Remember How Points are Counted</div>
+              <div class="instruction" style="margin-bottom: 200px; margin-left: 10px; font-style: italic; font-weight: normal;">
+                Click on the buttons to walk through the timeline of breaking a tie.
+              </div>
+            </div>
         </div>
 
         <div class="graphic-bar">
-          <span class="graphic-step" onclick="showPoint('love', this)">Love (0)</span>
-          <span class="arrow">→</span>
-          <span class="graphic-step" onclick="showPoint('15', this)">15</span>
-          <span class="arrow">→</span>
-          <span class="graphic-step" onclick="showPoint('30', this)">30</span>
-          <span class="arrow">→</span>
-          <span class="graphic-step" onclick="showPoint('40', this)">40</span>
-          <span class="arrow">→</span>
-          <span class="graphic-step" onclick="showPoint('game', this)">Game</span>
+          <span class="graphic-step" onclick="toggleExplanation('love', this)">Love (0)</span>
+          <span class="arrow" style="margin-right: 60px;">→</span>
+          <span class="graphic-step" onclick="toggleExplanation('15', this)">15</span>
+          <span class="arrow" style="margin-right: 60px;">→</span>
+          <span class="graphic-step" onclick="toggleExplanation('30', this)">30</span>
+          <span class="arrow" style="margin-right: 60px;">→</span>
+          <span class="graphic-step" onclick="toggleExplanation('40', this)">40</span>
+          <span class="arrow" style="margin-right: 0px;">→</span>
+          <span class="graphic-step" onclick="toggleExplanation('game', this)">Game</span>
         </div>
-        
-        <div id="love" class="bubble active">Love represents 0 points.</div>
-        <div id="15" class="bubble">This is the first point a player earns.</div>
-        <div id="30" class="bubble">This is the second point a player earns, and halfway to winning the game.</div>
-        <div id="40" class="bubble">When players tie 40–40, it is called a deuce.</div>
-        <div id="game" class="bubble">To win by an adequate margin, a player must lead by 2 points (e.g., 40–30 is a win, but not 15–30).</div>
-      </div>
+        </div>
+        <div id="love" class="explanation-circle"><img src="https://i.imgur.com/T26lMtA.png" referrerpolicy="no-referrer" style="width: 250px; height: 250; position:absolute; top:495px; left:260px;" ></div>        
+        <div id="15" class="explanation-circle"><img src="https://i.imgur.com/nW63v7K.png" referrerpolicy="no-referrer" style="width: 250px; height: 250; position:absolute; top:710px; left:465px;" ></div>
+        <div id="30" class="explanation-circle"><img src="https://i.imgur.com/ooOJYt4.png" referrerpolicy="no-referrer" style="width: 275px; height: 275; position:absolute; top:505px; left:630px;" ></div>
+        <div id="40" class="explanation-circle"><img src="https://i.imgur.com/eu9kJqo.png" referrerpolicy="no-referrer" style="width: 265px; height: 265; position:absolute; top:707px; left:820px;" ></div>
+        <div id="game" class="explanation-circle"><img src="https://i.imgur.com/XFFSgmp.png" referrerpolicy="no-referrer" style="width: 260px; height: 260; position:absolute; top:495px; left:950px;" ></div>
 
-      <a href="learning3.html">
-        <button class="next-btn">Next</button>
-      </a>
+
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+          <div style="display: flex; gap: 15px;">
+            <a href="learning1.html">
+              <button class="backMod-btn"><img src="https://i.imgur.com/qo8IhEx.png" referrerpolicy="no-referrer" style="width: 45px; height: 50; transform: rotate(180deg);" ></button>
+            </a>
+            <a href="learning1c.html">
+              <button class="back-btn" style="display: flex; align-items: center; justify-content: center;">
+                <img src="https://i.imgur.com/ZO6RzoY.png" referrerpolicy="no-referrer" style="width: 20px; height: 50; transform: rotate(180deg);" />
+              </button>
+            </a>
+          </div>
+          <div style="display: flex; gap: 15px;">
+            <a href="learning2b.html">
+              <button class="next-btn" style="display: flex; align-items: center; justify-content: center;">
+                <img src="https://i.imgur.com/ZO6RzoY.png" referrerpolicy="no-referrer" style="width: 20px; height: 50;" />
+              </button>
+            </a>
+            <a href="learning3.html">
+              <button class="nextMod-btn"><img src="https://i.imgur.com/qo8IhEx.png" referrerpolicy="no-referrer" style="width: 45px; height: 50;" ></button>
+            </a>
+          </div>
+        </div>
+
     </div>
   </div>
-
   <script>
-    function showPoint(id, element) {
-      const bubbles = document.querySelectorAll('.bubble');
-      bubbles.forEach(bubble => bubble.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-      const steps = document.querySelectorAll('.graphic-step');
-      steps.forEach(step => step.classList.remove('active'));
-      element.classList.add('active');
-    }
+    function toggleExplanation(id, element) {
+  const explanationCircle = document.getElementById(id);
+  const isActive = element.classList.contains('active');
+
+  if (isActive) {
+    //if it's already active then remove active state otherwise activate it
+    element.classList.remove('active');
+    explanationCircle.classList.remove('active');
+  } else {
+    element.classList.add('active');
+    explanationCircle.classList.add('active');
+  }
+}
+
+//set Love as active by default when page loads
+window.onload = function() {
+  const loveButton = document.querySelector('.graphic-step');
+  const loveExplanation = document.getElementById('love');
+  
+  loveButton.classList.add('active');
+  loveExplanation.classList.add('active');
+}
   </script>
+      
+      
 </body>
 </html>

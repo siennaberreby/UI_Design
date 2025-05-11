@@ -64,8 +64,8 @@
           </div>
         </div>
         <div class="feedback-container">
-          <div class="feedback-correct" style="display: none;">Correct! Great understanding!</div>
-          <div class="feedback-incorrect" style="display: none;">Incorrect! See the full explanation below.</div>
+          <div class="feedback-correct" style="display: none;">Correct! See explanation below.</div>
+          <div class="feedback-incorrect" style="display: none;">Incorrect! Try again. </div>
         </div>
       </div>
     </div>
@@ -83,9 +83,14 @@
 
     <!-- Navigation -->
     <div class="navigation-container">
-      <a href="quiz5.html" class="nav-button prev-button">&lt;</a>
+      <!--<a href="quiz5.html" class="nav-button prev-button">&lt;</a>
       <span class="nav-text">Next: See Your Results</span>
-      <a href="results.html" class="nav-button next-button" id="nextQuizBtn">&gt;</a>
+      <a href="results.html" class="nav-button next-button" id="nextQuizBtn">&gt;</a>-->
+      <a href="quiz5.html" class="back-btn"><img src="https://i.imgur.com/ZO6RzoY.png" referrerpolicy="no-referrer" style="width: 20px; height: 50; transform: rotate(180deg)" />
+      </a>
+      <span class="nav-text"></span>
+      <a href="results.html" class="next-btn"><img src="https://i.imgur.com/ZO6RzoY.png" referrerpolicy="no-referrer" style="width: 20px; height: 50;" />
+        </a>
     </div>
   </div>
 
@@ -115,10 +120,11 @@
           // Save correct answer
           let current = Number(localStorage.getItem('correctAnswers') || 0);
           localStorage.setItem('correctAnswers', current + 1);
+          explanation.style.display = "block";
         } else {
           feedbackIncorrect.style.display = "block";
           feedbackCorrect.style.display = "none";
-          explanation.style.display = "block";
+          explanation.style.display = "none";
         }
       });
     });

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tennis Scoring Trainer – Tiebreaks</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -34,7 +34,7 @@
       gap: 10px;
       position: absolute;
       top: 115px;
-      right: 215px;
+      right: 115px;
       margin-left: 0;
     }
 
@@ -42,10 +42,9 @@
       display: flex;
       gap: 8px;
     }
-
     .bar-step {
-      width: 40px;
-      height: 8px;
+      width: 60px;
+      height: 5px;
       border-radius: 6px;
       background-color: #eee;
     }
@@ -54,11 +53,10 @@
       background-color: #B9FF66;
     }
 
-    .skip-btn,
-    .next-btn {
+    .skip-btn {
       background-color: #B9FF66;
       border: 2px solid #000;
-      font-weight: 600;
+      font-weight: 400;
       font-size: 16px;
       padding: 12px 20px;
       border-radius: 8px;
@@ -67,11 +65,22 @@
       display: inline-block;
     }
 
-    .next-btn {
+    .back-btn, .next-btn, .backMod-btn, .nextMod-btn {
+      background-color: #B9FF66;
+      color: black;
+      padding: 12px 20px;
+      font-size: 16px;
+      border: 2px solid #000;
+      border-radius: 8px;
+      cursor: pointer;
       margin-top: 40px;
-      background-color: #000;
-      color: #fff;
+      width: 60px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+
 
     .info-box {
       background-color: #F5F5F5;
@@ -199,11 +208,11 @@
 
     <!-- Page Content -->
     <div class="learning-content">
-      <h1 class="page-title">Tiebreaks</h1>
+      <h1 class="page-title">Tiebreaks — <span style="font-weight: 800;">Part 1 of 3</span></h1>
 
       <div class="objective-title">Learning Objective:</div>
       <div class="objective-description">
-        Learn how tiebreaks are played to determine the winner of a set tied at 6–6, with a focus on scoring rules, key moments, and strategies.
+        Learn how tiebreaks are played to determine the winner of a set tied at 6–6, with a focus on scoring rules and key moments.
       </div>
 
       <a href="preview.html">
@@ -214,45 +223,42 @@
       <div class="info-box">
         <div class="info-label">What is a Tiebreak?</div>
         <div class="info-text">
-          A tiebreak is used to determine the winner of a set when the score reaches 6–6.
-          Instead of traditional games, players compete to reach a set number of points—usually 7—
-          while maintaining a two-point lead.
+          <br>
+          A tiebreak is a special rule in tennis used when a set reaches 6-6, and neither player has secured a two-game lead. This mini-game is designed to break the tie and determine the set winner.
+          <br>
+          <strong><i>How It Works:</i></strong>
+          <br>
+            Players compete to be the <strong>first to reach 7 points,</strong> but they <strong>must win by at least 2 points (e.g., 7-5 or 10-8 in certain cases).</strong>
+            The winner of the tiebreak <strong>wins the set</strong> and moves forward in the match.
+
         </div>
       </div>
 
-      <!-- Timeline Section -->
-      <div class="timeline-box">
-        <div class="timeline-header">
-          <div class="timeline-label">Let’s See This in Action!</div>
-          <div class="timeline-instruction">
-            Click on the buttons to walk through the timeline of breaking a tie.
-          </div>
+      <div style="display: flex; justify-content: space-between; width: 100%;">
+        <div style="display: flex; gap: 15px;">
+          <a href="learning3.html">
+            <button class="backMod-btn"><img src="https://i.imgur.com/qo8IhEx.png" referrerpolicy="no-referrer" style="width: 45px; height: 50; transform: rotate(180deg);" ></button>
+          </a>
+          <a href="learning3c.html">
+            <button class="back-btn" style="display: flex; align-items: center; justify-content: center;">
+              <img src="https://i.imgur.com/ZO6RzoY.png" referrerpolicy="no-referrer" style="width: 20px; height: 50; transform: rotate(180deg);" />
+            </button>
+          </a>
         </div>
-
-        <div class="timeline-bar">
-          <div class="timeline-point">1–0</div>
-          <div class="timeline-point">2–0</div>
-          <div class="timeline-point">6–6</div>
-          <div class="timeline-point">7–6</div>
-          <div class="timeline-point">8–6</div>
-          <div class="timeline-point">WIN!</div>
-        </div>
-
-        <div class="caption-boxes">
-          <div class="timeline-caption">
-            Player 1 wins the first point and takes an early lead.
-          </div>
-          <div class="timeline-caption">
-            As the game continues with each player scoring until 6–6, a tiebreak is reached.
-          </div>
+        <div style="display: flex; gap: 15px;">
+          <a href="learning4b.html">
+            <button class="next-btn" style="display: flex; align-items: center; justify-content: center;">
+              <img src="https://i.imgur.com/ZO6RzoY.png" referrerpolicy="no-referrer" style="width: 20px; height: 50;" />
+            </button>
+          </a>
+          <a href="preview.html">
+            <button class="nextMod-btn"><img src="https://i.imgur.com/qo8IhEx.png" referrerpolicy="no-referrer" style="width: 45px; height: 50;" ></button>
+          </a>
         </div>
       </div>
 
-      <!-- NEXT button to go to Quiz -->
-      <a href="preview.html">
-        <button class="next-btn">Next</button>
-      </a>
     </div>
   </div>
 </body>
 </html>
+

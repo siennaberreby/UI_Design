@@ -259,36 +259,6 @@
   </div>
 
   
-
-
-  <script>
-//All explanation images are hidden except point
-  document.addEventListener('DOMContentLoaded', () => {
-      const circles = document.querySelectorAll('.explanation-circle');
-
-      circles.forEach(circle => {
-        if (circle.id !== 'point') {
-          circle.style.display = 'none';
-
-        } else {
-          circle.style.display = 'block';
-        }
-      });
-    });
-
-
-    function showExplanation(id, element) {
-      //Select the specific explanation circle
-      const selectedCircle = document.getElementById(id);
-      if (selectedCircle.style.display === 'block') {
-        selectedCircle.style.display = 'none';  
-        element.classList.remove('active');    
-      } else {
-        selectedCircle.style.display = 'block'; 
-        element.classList.add('active');       
-      }
-    }
-  </script>
   
   
   

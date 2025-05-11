@@ -1,1 +1,461 @@
 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tennis Scoring Trainer – The Big Picture </title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+
+.graphic-step.active, .graphic-step-point {
+    color: #B9FF66; 
+  }
+
+    .learning-content {
+      padding: 40px 100px;
+    }
+
+    .page-title {
+      font-size: 36px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .objective-title {
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .objective-description {
+      font-size: 18px;
+      margin-bottom: 20px;
+      max-width: 600px;
+    }
+
+    .progress-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      position: absolute;
+      top: 115px;
+      right: 115px;
+      margin-left: 0;
+    }
+
+    .bar {
+      display: flex;
+      gap: 8px;
+    }
+
+    .bar-step {
+      width: 60px;
+      height: 5px;
+      border-radius: 6px;
+      background-color: #eee;
+    }
+    .bar-step.active {
+      background-color: #B9FF66;
+    }
+
+    .skip-btn {
+      background-color: #B9FF66;
+      padding: 12px 20px;
+      font-size: 16px;
+      border: 2px solid #000;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-bottom: 62px;
+    }
+
+    .back-btn, .next-btn, .backMod-btn, .nextMod-btn {
+      background-color: #B9FF66;
+      color: black;
+      padding: 12px 20px;
+      font-size: 16px;
+      border: 2px solid #000;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 40px;
+      width: 60px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+
+    
+    .info-box {
+      background-color: #F5F5F5;
+      border-radius: 24px;
+      padding: 40px;
+    }
+
+    .info-title {
+      font-size: 20px;
+      font-weight: 600;
+      background-color: #B9FF66;
+      display: inline-block;
+      padding: 4px 10px;
+      margin-bottom: 20px;
+    }
+
+    .instruction {
+      font-size: 17px;
+      display: inline-block;
+      padding: 4px 10px;
+      margin-bottom: 20px;
+      margin-left:15px;
+    }
+
+    .graphic-bar {
+      background-color: #333;
+      color: white;
+      border-radius: 100px;
+      padding: 14px 30px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+    .graphic-step:first-child {
+      cursor: pointer;
+      transition: opacity 0.2s ease, color 0.2s ease;
+    }
+
+    .graphic-step:first-child:hover {
+      opacity: 0.8;
+    }
+
+    .graphic-step:not(:first-child) {
+      cursor: default;
+    }
+
+    .graphic-step.active {
+      color: #B9FF66;
+    }
+
+    .arrow {
+      font-size: 20px;
+    }
+
+    .explanation-box {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      color: #333;
+      max-width: 600px;
+      margin: 0 auto;
+      display: none;
+    }
+
+    .explanation-box.active {
+      display: block;
+    }
+
+    .top-nav {
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="quiz-container">
+    <!-- Top Nav with progress -->
+    <div class="top-nav">
+      <div class="logo">
+        <span class="star">★</span>
+        <span class="logo-text">Tennis Scoring Trainer</span>
+      </div>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="learning1.html" class="nav-link active">Learning</a>
+          <a href="preview.html" class="nav-link">Quiz</a>
+          <a href="results.html" class="nav-link">Results</a>
+        </div>
+        <div class="progress-wrapper">
+          <span style="font-size: 14px; font-weight: 500;">PROGRESS</span>
+          <div class="bar">
+            <div class="bar-step active"></div>
+            <div class="bar-step"></div>
+            <div class="bar-step"></div>
+            <div class="bar-step"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Page Content -->
+    <div class="learning-content">
+      <h1 class="page-title">The Big Picture — <span style="font-weight: 800;">Part 2 of 3</span></h1>
+
+      <div class="objective-title">Learning Objective:</div>
+      <div class="objective-description">
+        Understand how points stack up into games, games into sets, and sets into matches.
+      </div>
+
+      <a href="preview.html">
+        <button class="skip-btn">Skip to Quiz</button>
+      </a>
+
+      <div class="info-box">
+        <div class="info-title" style="margin-bottom: 200px;">Let's See This in Action!</div>
+        <div class="instruction" style="margin-bottom: 200px;">Click the fewest required circles to progress through the timeline.</div>
+
+        <div class="graphic-bar">
+            <span class="graphic-step active" onclick="showExplanation('point', this)" style="margin-right: 50px;">Point</span>
+            <span class="arrow" style="margin-right: 90px;">→</span>
+            <span class="graphic-step" style="margin-right: 50px;">Game</span>
+            <span class="arrow" style="margin-right: 90px;">→</span>
+            <span class="graphic-step" style="margin-right: 50px;">Set</span>
+            <span class="arrow" style="margin-right: 90px;">→</span>
+            <span class="graphic-step">Match</span>
+        </div>
+
+        <div id="point" class="explanation-circle"><img src="https://i.imgur.com/s9yvFAT.png" referrerpolicy="no-referrer" style="width: 260px; height: 260; position:absolute; top:700px; left:190px;" ></div>
+        <div id="game" class="explanation-circle"><img src="https://i.imgur.com/iPSjFKJ.png" referrerpolicy="no-referrer" style="width: 285px; height: 285; position:absolute; top:455px; left:460px;" ></div>
+        <div id="set" class="explanation-circle"><img src="https://i.imgur.com/SY9h9TN.png" referrerpolicy="no-referrer" style="width: 265px; height: 265; position:absolute; top:700px; left:755px;" ></div>
+        <div id="match" class="explanation-circle"><img src="https://i.imgur.com/XRQV1Bj.png" referrerpolicy="no-referrer" style="width: 265px; height: 265; position:absolute; top:470px; left:1030px;" ></div>
+        <div class="click-circle" id="point" style="margin-top:150px;width: 100px; height: 100px; border-radius: 50%; background-color: #B9FF66; position:absolute; top:740px; left:210px; display: flex; align-items: center; justify-content: center;">
+          <span style="color: black; font-weight: bold;">Point 1</span>
+        </div>
+        <div class="click-circle" id="point" style="margin-top:150px;width: 100px; height: 100px; border-radius: 50%; background-color: #B9FF66; position:absolute; top:740px; left:330px; display: flex; align-items: center; justify-content: center;">
+          <span style="color: black; font-weight: bold;">Point 2</span>
+        </div>
+        <div class="click-circle" id="point" style="margin-top:160px;width: 100px; height: 100px; border-radius: 50%; background-color: #B9FF66; position:absolute; top:850px; left:210px; display: flex; align-items: center; justify-content: center;">
+          <span style="color: black; font-weight: bold;">Point 3</span>
+        </div>
+        <div class="click-circle" id="point" style="margin-top:160px;width: 100px; height: 100px; border-radius: 50%; background-color: #B9FF66; position:absolute; top:850px; left:330px; display: flex; align-items: center; justify-content: center;">
+          <span style="color: black; font-weight: bold;">Point 4</span>
+        </div>
+        <div class="click-circle" id="point" style="margin-top:170px;width: 100px; height: 100px; border-radius: 50%; background-color: gray; position:absolute; top:960px; left:210px; display: flex; align-items: center; justify-content: center;">
+          <span style="color: black; font-weight: bold;">Point 5+</span>
+        </div>  
+        <span class="arrow" style="margin-right: 40px; font-size:30px; position:absolute; top:970px; left:460px;">→</span>
+
+        <!--game-->
+        <div class="click-circle" id="game" style="margin-top:150px;width: 100px; height: 100px; border-radius: 50%; background-color: gray; position:absolute; top:740px; left:520px; display: flex; align-items: center; justify-content: center;">
+          <span style="color: black; font-weight: bold;">Game 1</span>
+        </div>
+        <div class="click-circle" id="game" style="margin-top:150px;width: 100px; height: 100px; border-radius: 50%; background-color: gray; position:absolute; top:740px; left:650px; display: flex; align-items: center; justify-content: center;">
+          <span style="color: black; font-weight: bold;">Game 2</span>
+        </div>
+        <div class="click-circle" id="game" style="margin-top:160px;width: 100px; height: 100px; border-radius: 50%; background-color: gray; position:absolute; top:850px; left:520px; display: flex; align-items: center; justify-content: center;">
+          <span style="color: black; font-weight: bold;">Game 3</span>
+        </div>
+        <div class="click-circle" id="game" style="margin-top:160px;width: 100px; height: 100px; border-radius: 50%; background-color: gray; position:absolute; top:850px; left:650px; display: flex; align-items: center; justify-content: center;">
+          <span style="color: black; font-weight: bold;">Game 4</span>
+        </div>
+        <div class="click-circle" id="game" style="margin-top:170px;width: 100px; height: 100px; border-radius: 50%; background-color: gray; position:absolute; top:960px; left:520px; display: flex; align-items: center; justify-content: center;">
+          <span style="color: black; font-weight: bold;">Game 5</span>
+        </div>  
+        <div class="click-circle" id="game" style="margin-top:170px;width: 100px; height: 100px; border-radius: 50%; background-color: gray; position:absolute; top:960px; left:650px; display: flex; align-items: center; justify-content: center;">
+          <span style="color: black; font-weight: bold;">Game 6</span>
+        </div>  
+
+        <div class="click-circle" id="game" style="margin-top:170px;width: 100px; height: 100px; border-radius: 50%; background-color: gray; position:absolute; top:1070px; left:520px; display: flex; align-items: center; justify-content: center;">
+          <span style="color: black; font-weight: bold;">Game 7+</span>
+        </div>  
+        <span class="arrow" style="margin-right: 40px; font-size:30px; position:absolute; top:970px; left:770px;">→</span>
+
+
+        <!--set-->
+
+        <div class="click-circle" id="set" style="margin-top:150px;width: 100px; height: 100px; border-radius: 50%; background-color: #B9FF66; position:absolute; top:740px; left:840px; display: flex; align-items: center; justify-content: center;">
+          <span style="color: black; font-weight: bold;">Set 1</span>
+        </div>
+        <div class="click-circle" id="set" style="margin-top:150px;width: 100px; height: 100px; border-radius: 50%; background-color: #B9FF66; position:absolute; top:850px; left:840px; display: flex; align-items: center; justify-content: center;">
+          <span style="color: black; font-weight: bold;">Set 2</span>
+        </div>
+        <div class="click-circle" id="set" style="margin-top:160px;width: 100px; height: 100px; border-radius: 50%; background-color: #B9FF66; position:absolute; top:960px; left:840px; display: flex; align-items: center; justify-content: center;">
+          <span style="color: black; font-weight: bold;">Set 3+</span>
+        </div>
+        <span class="arrow" style="margin-right: 40px; font-size:30px; position:absolute; top:970px; left:1000px;">→</span>
+
+
+         <!--match-->
+
+         <div class="click-circle" id="match" style="margin-top:150px;width: 100px; height: 100px; border-radius: 50%; background-color: gray; position:absolute; top:800px; left: 1090px; display: flex; align-items: center; justify-content: center;">
+          <span style="color: black; font-weight: bold;">🏆</span>
+        </div>
+
+
+
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+      </div>
+      <div style="display: flex; justify-content: space-between; width: 100%;">
+        <div style="display: flex; gap: 15px;">
+          <a href="learning1.html">
+            <button class="backMod-btn"><img src="https://i.imgur.com/qo8IhEx.png" referrerpolicy="no-referrer" style="width: 45px; height: 50; transform: rotate(180deg);" ></button>
+          </a>
+          <a href="learning1.html">
+            <button class="back-btn" style="display: flex; align-items: center; justify-content: center;">
+              <img src="https://i.imgur.com/ZO6RzoY.png" referrerpolicy="no-referrer" style="width: 20px; height: 50; transform: rotate(180deg);" />
+            </button>
+          </a>
+        </div>
+        <div style="display: flex; gap: 15px;">
+          <a href="learning1c.html">
+            <button class="next-btn" style="display: flex; align-items: center; justify-content: center;">
+              <img src="https://i.imgur.com/ZO6RzoY.png" referrerpolicy="no-referrer" style="width: 20px; height: 50;" />
+            </button>
+          </a>
+          <a href="learning2.html">
+            <button class="nextMod-btn"><img src="https://i.imgur.com/qo8IhEx.png" referrerpolicy="no-referrer" style="width: 45px; height: 50;" ></button>
+          </a>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+
+  <script>
+    //all explanation images are hidden except point
+    document.addEventListener('DOMContentLoaded', () => {
+      let pointCount = 0;
+      let gameCount = 0;
+      let setCount = 0;
+
+      //initially hide all explanations except point
+      const explanationCircles = document.querySelectorAll('.explanation-circle');
+      explanationCircles.forEach(circle => {
+        if (circle.id !== 'point') {
+          circle.style.display = 'none';
+        } else {
+          circle.style.display = 'block';
+        }
+      });
+
+      //set all circles to gray initially
+      const circles = document.querySelectorAll('.click-circle');
+      circles.forEach(circle => {
+        circle.style.backgroundColor = 'gray';
+      });
+
+      const gameStep = document.querySelector('.graphic-step:nth-child(3)');
+      gameStep.classList.remove('active');
+      document.getElementById('game').style.display = 'none';
+
+      const matchStep = document.querySelector('.graphic-step:nth-child(7)');
+      matchStep.classList.remove('active');
+      document.getElementById('match').style.display = 'none';
+
+      circles.forEach(circle => {
+        circle.addEventListener('click', () => {
+          const category = circle.id;
+
+          if (circle.style.backgroundColor === 'gray') {
+            circle.style.backgroundColor = '#B9FF66';
+
+            if (category === 'point') {
+              pointCount++;
+
+              //if 4 points are clicked, highlight the "Game" step
+              if (pointCount === 4) {
+                const gameStep = document.querySelector('.graphic-step:nth-child(3)');
+                gameStep.classList.add('active');
+                showExplanation('game', gameStep);
+              }
+            } else if (category === 'game') {
+              gameCount++;
+
+              //if 6 games are clicked, highlight the "Set" step
+              if (gameCount === 6) {
+                const setStep = document.querySelector('.graphic-step:nth-child(5)');
+                setStep.classList.add('active');
+                showExplanation('set', setStep);
+              }
+            } else if (category === 'set') {
+              setCount++;
+
+              //if 2 sets are clicked, highlight the "Match" step and make match circle green
+              if (setCount === 2) {
+                const matchStep = document.querySelector('.graphic-step:nth-child(7)');
+                matchStep.classList.add('active');
+                showExplanation('match', matchStep);
+
+                const matchCircle = document.querySelector('.click-circle#match');
+                matchCircle.style.backgroundColor = '#B9FF66';
+                matchCircle.style.outline = '3px solid darkgreen';  matchCircle.style.backgroundColor = '#B9FF66';
+              }
+            } 
+          } else {
+            circle.style.backgroundColor = 'gray';
+
+            if (category === 'point') {
+              pointCount--;
+
+              //if fewer than 4 points are active, remove the "Game" highlight
+              if (pointCount < 4) {
+                const gameStep = document.querySelector('.graphic-step:nth-child(3)');
+                gameStep.classList.remove('active');
+                document.getElementById('game').style.display = 'none';
+              }
+            } else if (category === 'game') {
+              gameCount--;
+
+              //if fewer than 6 games are active, remove the "Set" highlight
+              if (gameCount < 6) {
+                const setStep = document.querySelector('.graphic-step:nth-child(5)');
+                setStep.classList.remove('active');
+                document.getElementById('set').style.display = 'none';
+              }
+            } else if (category === 'set') {
+              setCount--;
+
+              //if fewer than 2 sets are active, remove the "Match" highlight and turn match circle gray
+              if (setCount < 2) {
+                const matchStep = document.querySelector('.graphic-step:nth-child(7)');
+                matchStep.classList.remove('active');
+                document.getElementById('match').style.display = 'none';
+
+                const matchCircle = document.querySelector('.click-circle#match');
+                matchCircle.style.backgroundColor = 'gray';
+              }
+            } 
+          }
+
+          console.log(`Points: ${pointCount}, Games: ${gameCount}, Sets: ${setCount}`);
+        });
+      });
+    });
+
+    function showExplanation(id, element) {
+      //select the specific explanation circle
+      const selectedCircle = document.getElementById(id);
+      if (selectedCircle.style.display === 'block') {
+        selectedCircle.style.display = 'none';
+        element.classList.remove('active');
+      } else {
+        selectedCircle.style.display = 'block';
+        element.classList.add('active');
+      }
+    }
+  </script>
+
+
+
+
+</body>
+</html>

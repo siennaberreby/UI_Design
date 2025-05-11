@@ -64,28 +64,32 @@
           </div>-->
         </div>
         <div class="feedback-container">
-          <div class="feedback-correct">Correct!</div>
+          <div class="feedback-correct">Correct! See explanation below.</div>
           <div class="feedback-incorrect">Incorrect! Try again.</div>
         </div>
       </div>
     </div>
 
     <!-- Hidden Explanation -->
-    <!--<div id="explanation" style="padding: 20px 100px; display: none;">
+    <div id="explanation" style="padding: 20px 100px; display: none;">
       <h4 style="margin-bottom: 10px;">Explanation:</h4>
       <ul style="text-align: left; line-height: 1.6; font-size: 18px;">
-        <li><strong>5–5</strong> — No tiebreak yet. Players continue playing.</li>
-        <li><strong>6–6</strong> — Yes, a tiebreak is played at 6–6 to decide the set.</li>
-        <li><strong>7–6</strong> — No tiebreak here. The set has already been won 7–6.</li>
-        <li><strong>5–4</strong> — No tiebreak. Players must reach 6 games with a 2-game margin.</li>
+        <li><strong>Advantage B</strong> — Yes! When the score is deuce (40-40) and a player wins a point, they gain the advantage. If Player B wins the next point, they win the game.</li>
+        <li><strong>40-30</strong> — No, this would only be possible if the previous score had been 40-30 instead of 40-40 (Deuce).</li>
+        <li><strong>Game B</strong> — Not yet! Player B needs to win one more point after advantage to secure the game.</li>
       </ul>
-    </div>-->
+    </div>
 
     <!-- Navigation -->
     <div class="navigation-container">
-      <a href="quiz1.html" class="nav-button prev-button">&lt;</a>
+      <!--<a href="quiz1.html" class="nav-button prev-button">&lt;</a>
       <span class="nav-text">Next: Point Progression Drag & Drop</span>
-      <a href="quiz3.html" class="nav-button next-button">&gt;</a>
+      <a href="quiz3.html" class="nav-button next-button">&gt;</a>-->
+        <a href="quiz1.html" class="back-btn"><img src="https://i.imgur.com/ZO6RzoY.png" referrerpolicy="no-referrer" style="width: 20px; height: 50; transform: rotate(180deg)" />
+        </a>
+        <span class="nav-text">Next: Tiebreak Rules MCQ</span>
+        <a href="quiz3.html" class="next-btn"><img src="https://i.imgur.com/ZO6RzoY.png" referrerpolicy="no-referrer" style="width: 20px; height: 50;" />
+          </a>
     </div>
   </div>
 
@@ -105,10 +109,12 @@
           // Save correct answer
           let correct = Number(localStorage.getItem('correctAnswers') || 0);
           localStorage.setItem('correctAnswers', correct + 1);
+          explanation.style.display = "block"; // show explanation if correct only
+
         } else {
           feedbackIncorrect.style.display = "block";
           feedbackCorrect.style.display = "none";
-          explanation.style.display = "block"; // show explanation if wrong
+          explanation.style.display = "none"; // show explanation if wrong
         }
       });
     });

@@ -7,6 +7,24 @@
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 </head>
+<style>
+  .back-btn, .next-btn {
+      background-color: #B9FF66;
+      color: black;
+      padding: 12px 20px;
+      font-size: 16px;
+      border: 2px solid #000;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 40px;
+      width: 60px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+</style>
 <body>
   <div class="quiz-container">
     <!-- Top Navigation -->
@@ -63,28 +81,29 @@
           </div>-->
         </div>
         <div class="feedback-container">
-          <div class="feedback-correct">Correct!</div>
+          <div class="feedback-correct">Correct! See explanation below.</div>
           <div class="feedback-incorrect">Incorrect! Try again.</div>
         </div>
       </div>
     </div>
 
     <!-- Hidden Explanation -->
-    <!--<div id="explanation" style="padding: 20px 100px; display: none;">
+    <div id="explanation" style="padding: 20px 100px; display: none;">
       <h4 style="margin-bottom: 10px;">Explanation:</h4>
       <ul style="text-align: left; line-height: 1.6; font-size: 18px;">
-        <li><strong>5–5</strong> — No tiebreak yet. Players continue playing.</li>
-        <li><strong>6–6</strong> — Yes, a tiebreak is played at 6–6 to decide the set.</li>
-        <li><strong>7–6</strong> — No tiebreak here. The set has already been won 7–6.</li>
-        <li><strong>5–4</strong> — No tiebreak. Players must reach 6 games with a 2-game margin.</li>
+        <li><strong>40-30</strong> — Yes! 'Love' in tennis means zero points.</li>
+        <li><strong>Deuce</strong> — No, 'Love' does not refer to a tie situation.</li>
+        <li><strong>Game B</strong> — Incorrect! 'Love' isn't the first point, it simply means zero.</li>
       </ul>
-    </div>-->
+    </div>
 
     <!-- Navigation -->
     <div class="navigation-container">
-      <a href="quiz1.html" class="nav-button prev-button">&lt;</a>
-      <span class="nav-text">Next: Point Progression Drag & Drop</span>
-      <a href="quiz2.html" class="nav-button next-button">&gt;</a>
+      <a href="quiz1.html" class="back-btn"><img src="https://i.imgur.com/ZO6RzoY.png" referrerpolicy="no-referrer" style="width: 20px; height: 50; transform: rotate(180deg)" />
+      </a>
+      <span class="nav-text">Next: Deuce MCQ Scenario</span>
+      <a href="quiz2.html" class="next-btn"><img src="https://i.imgur.com/ZO6RzoY.png" referrerpolicy="no-referrer" style="width: 20px; height: 50;" />
+        </a>
     </div>
   </div>
 
@@ -104,10 +123,13 @@
           // Save correct answer
           let correct = Number(localStorage.getItem('correctAnswers') || 0);
           localStorage.setItem('correctAnswers', correct + 1);
+          explanation.style.display = "block"; // show explanation if correct only
+
         } else {
           feedbackIncorrect.style.display = "block";
           feedbackCorrect.style.display = "none";
-          explanation.style.display = "block"; // show explanation if wrong
+          explanation.style.display = "none";
+
         }
       });
     });

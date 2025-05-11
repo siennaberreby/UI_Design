@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tennis Scoring Trainer – Point Progression</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    .learning-content {
+      padding: 40px 100px;
+    }
+
+    .page-title {
+      font-size: 36px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .objective-title {
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .objective-description {
+      font-size: 18px;
+      margin-bottom: 20px;
+      max-width: 600px;
+    }
+
+    .progress-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      position: absolute;
+      top: 115px;
+      right: 115px;
+      margin-left: 0;
+    }
+
+    .bar {
+      display: flex;
+      gap: 8px;
+    }
+
+    .bar-step {
+      width: 60px;
+      height: 5px;
+      border-radius: 6px;
+      background-color: #eee;
+    }
+
+    .bar-step.active {
+      background-color: #B9FF66;
+    }
+
+    .skip-btn {
+      background-color: #B9FF66;
+      padding: 12px 20px;
+      font-size: 16px;
+      border: 2px solid #000;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-bottom: 62px;
+    }
+
+    .back-btn, .next-btn, .backMod-btn, .nextMod-btn {
+      background-color: #B9FF66;
+      color: black;
+      padding: 12px 20px;
+      font-size: 16px;
+      border: 2px solid #000;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 40px;
+      width: 60px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+
+    .info-box {
+  background-color: #F5F5F5;
+  border-radius: 24px;
+  padding: 40px;
+  padding-bottom: 100px; 
+}
+.infoTwo-box {
+    background-color: #D9D9D9;
+    border-radius: 16px;
+    padding: 20px;
+    padding-bottom: 50px; 
+    padding-left: 40px; 
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+    .info-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 30px;
+    }
+
+    .info-title {
+      font-size: 20px;
+      font-weight: 600;
+      background-color: #B9FF66;
+      display: inline-block;
+      padding: 4px 10px;
+    }
+
+    .info-title2 {
+      font-size: 20px;
+      font-weight: 600;
+      display: inline-block;
+    }
+
+    .info-note {
+      font-size: 16px;
+      font-weight: 500;
+      max-width: 360px;
+    }
+
+    .graphic-bar {
+      background-color: #333;
+      color: white;
+      border-radius: 100px;
+      padding: 14px 30px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+    .graphic-step {
+      cursor: pointer;
+      transition: opacity 0.2s ease, color 0.2s ease;
+    }
+
+    .graphic-step:hover {
+      opacity: 0.8;
+    }
+
+    .graphic-step.active {
+      color: #B9FF66;
+    }
+
+    .explanation-circle {
+      display: none;
+    }
+
+    .explanation-circle.active {
+      display: block;
+    }
+
+    .arrow {
+      font-size: 20px;
+    }
+
+    .bubble {
+      background-color: white;
+      border-radius: 16px;
+      border: 1.5px solid #000;
+      padding: 18px;
+      max-width: 600px;
+      margin: 0 auto;
+      display: none;
+      font-size: 16px;
+    }
+
+    .bubble.active {
+      display: block;
+    }
+
+    .top-nav {
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+    .instruction {
+      font-size: 17px;
+      display: inline-block;
+      padding: 4px 10px;
+      margin-bottom: 20px;
+      margin-left:0px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="quiz-container">
+    <!-- Top Nav with progress -->
+    <div class="top-nav">
+      <div class="logo">
+        <span class="star">★</span>
+        <span class="logo-text">Tennis Scoring Trainer</span>
+      </div>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="learning2.html" class="nav-link active">Learning</a>
+          <a href="preview.html" class="nav-link">Quiz</a>
+          <a href="results.html" class="nav-link">Results</a>
+        </div>
+        <div class="progress-wrapper">
+          <span style="font-size: 14px; font-weight: 500;">PROGRESS</span>
+          <div class="bar">
+            <div class="bar-step active"></div>
+            <div class="bar-step active"></div>
+            <div class="bar-step"></div>
+            <div class="bar-step"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="learning-content">
+      <h1 class="page-title">Point Progression — <span style="font-weight: 800;">Part 2 of 3</span></h1>
+
+      <div class="objective-title">Learning Objective:</div>
+      <div class="objective-description">
+        Understand the order of points and how to win a game.
+      </div>
+
+      <a href="preview.html">
+        <button class="skip-btn">Skip to Quiz</button>
+      </a>
+
+      <div class="info-box">
+        <div class="info-header">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <div class="info-title" style="margin-bottom: 40px;">Let's See This in Action!</div>
+              <div style="font-style: italic; font-weight: normal; margin-bottom: 40px;">
+                Click on the +/- buttons to adjust the score and walkthrough the progression to winning a game.
+              </div>
+            </div>
+        </div>
+        <div class="infoTwo-box">
+
+        <div style="display: flex; justify-content: flex-start; margin-top: 20px;">
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
+            <div style="background-color:  rgb(152, 150, 150); border-radius: 16px; padding: 20px; width: 100%; text-align: center;">
+                <h3>Player 1</h3>
+            </div>
+
+            <img src="https://i.imgur.com/Bjt2yUn.png" referrerpolicy="no-referrer" style="width: 65px; height: 60; position:absolute; top:522px; left:685px; cursor: pointer;" id="player1-plus" onclick="decreaseScore(1)">
+            <img src="https://i.imgur.com/sk5pwnj.png" referrerpolicy="no-referrer" style="width: 60px; height: 60; position:absolute; top:528px; left:765px; cursor: pointer;" id="player1-minus" onclick="increaseScore(1)">
+            <div style="width: 65px; height: 60px; background-color:  rgb(152, 150, 150); position: absolute; top: 528px; left: 850px; border-radius: 30%; display: flex; justify-content: center; align-items: center; font-size: 24px; font-weight: bold;" id="player1-score">0</div>
+            <br>
+            <div style="background-color: rgb(152, 150, 150); border-radius: 16px; padding: 20px; width: 100%; text-align: center;">
+                <h3>Player 2</h3>
+            </div>
+            <img src="https://i.imgur.com/Fq1T76Y.png" referrerpolicy="no-referrer" class="game-text" style="width: 85px; height: 60; position:absolute; top:605px; left:840px; cursor: pointer; display: none;">
+
+            <img src="https://i.imgur.com/Bjt2yUn.png" referrerpolicy="no-referrer" style="width: 65px; height: 60; position:absolute; top:650px; left:685px; cursor: pointer;" id="player2-plus" onclick="decreaseScore(2)">
+            <img src="https://i.imgur.com/sk5pwnj.png" referrerpolicy="no-referrer" style="width: 60px; height: 60; position:absolute; top:655px; left:765px; cursor: pointer;" id="player2-minus" onclick="increaseScore(2)">
+            <div style="width: 65px; height: 60px; background-color:  rgb(152, 150, 150); position: absolute; top: 650px; left: 850px; border-radius: 30%; display: flex; justify-content: center; align-items: center; font-size: 24px; font-weight: bold;" id="player2-score">0</div>
+            </div>
+        </div>
+        </div>
+
+        <div id="status-message" style="font-size: 24px; text-align: center; margin-top: 30px;  font-weight: bold;">
+          Ready to play!
+        </div>
+
+        </div>
+
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+          <div style="display: flex; gap: 15px;">
+            <a href="learning1.html">
+              <button class="backMod-btn"><img src="https://i.imgur.com/qo8IhEx.png" referrerpolicy="no-referrer" style="width: 45px; height: 50; transform: rotate(180deg);" ></button>
+            </a>
+            <a href="learning2.html">
+              <button class="back-btn" style="display: flex; align-items: center; justify-content: center;">
+                <img src="https://i.imgur.com/ZO6RzoY.png" referrerpolicy="no-referrer" style="width: 20px; height: 50; transform: rotate(180deg);" />
+              </button>
+            </a>
+          </div>
+          <div style="display: flex; gap: 15px;">
+            <a href="learning2c.html">
+              <button class="next-btn" style="display: flex; align-items: center; justify-content: center;">
+                <img src="https://i.imgur.com/ZO6RzoY.png" referrerpolicy="no-referrer" style="width: 20px; height: 50;" />
+              </button>
+            </a>
+            <a href="learning3.html">
+              <button class="nextMod-btn"><img src="https://i.imgur.com/qo8IhEx.png" referrerpolicy="no-referrer" style="width: 45px; height: 50;" ></button>
+            </a>
+          </div>
+        </div>
+
+    </div>
+  </div>
+  <script>
+    const scoreValues = ["0", "15", "30", "40"];
+
+    let player1ScoreIndex = 0;
+    let player2ScoreIndex = 0;
+
+    //increase score
+    function increaseScore(playerNum) {
+      const statusMessage = document.getElementById('status-message');
+      if (playerNum === 1) {
+        if (player1ScoreIndex < scoreValues.length - 1) {
+          player1ScoreIndex++;
+          document.getElementById('player1-score').textContent = scoreValues[player1ScoreIndex];
+          
+          // set status message based on the new score
+          if (scoreValues[player1ScoreIndex] === "15") {
+            statusMessage.textContent = `Player 1 scores a point!`;
+          } else if (scoreValues[player1ScoreIndex] === "30") {
+            statusMessage.textContent = `Player 1 scores 2 points!`;
+          } else if (scoreValues[player1ScoreIndex] === "40") {
+            statusMessage.textContent = `Player 1 scores 3 points!`;
+          }
+          
+          if (player1ScoreIndex === 3 && player2ScoreIndex <= 1) {
+            statusMessage.textContent = `Player 1 wins the game!`;
+          }
+        }
+      } else if (playerNum === 2) {
+        if (player2ScoreIndex < scoreValues.length - 1) {
+          player2ScoreIndex++;
+          document.getElementById('player2-score').textContent = scoreValues[player2ScoreIndex];
+          
+          if (scoreValues[player2ScoreIndex] === "15") {
+            statusMessage.textContent = `Player 2 scores a point!`;
+          } else if (scoreValues[player2ScoreIndex] === "30") {
+            statusMessage.textContent = `Player 2 scores 2 points!`;
+          } else if (scoreValues[player2ScoreIndex] === "40") {
+            statusMessage.textContent = `Player 2 scores 3 points!`;
+          }
+          
+          // Check if player 2 has won
+          if (player2ScoreIndex === 3 && player1ScoreIndex <= 1) {
+            statusMessage.textContent = `Player 2 wins the game!`;
+          }
+        }
+      }
+
+      checkGameCondition();
+    }
+
+    // decrease score
+    function decreaseScore(playerNum) {
+      const statusMessage = document.getElementById('status-message');
+      if (playerNum === 1) {
+        if (player1ScoreIndex > 0) {
+          player1ScoreIndex--;
+          document.getElementById('player1-score').textContent = scoreValues[player1ScoreIndex];
+           statusMessage.textContent = `Player 1 loses a point! Score is now ${scoreValues[player1ScoreIndex]}.`;
+        }
+      } else if (playerNum === 2) {
+        if (player2ScoreIndex > 0) {
+          player2ScoreIndex--;
+          document.getElementById('player2-score').textContent = scoreValues[player2ScoreIndex];
+           statusMessage.textContent = `Player 2 loses a point! Score is now ${scoreValues[player2ScoreIndex]}.`;
+        }
+      }
+
+      checkGameCondition();
+    }
+
+    //check game condition
+    function checkGameCondition() {
+      const gameText = document.querySelector('.game-text');
+      const player1ScoreElement = document.getElementById('player1-score');
+      const player2ScoreElement = document.getElementById('player2-score');
+      const statusMessage = document.getElementById('status-message');
+
+      if (player1ScoreIndex === 3 && player2ScoreIndex <= 1) {
+        gameText.style.display = 'block';
+        statusMessage.textContent = "Player 1 wins the game!";
+        player1ScoreElement.style.borderColor = '#B9FF66';
+        player1ScoreElement.style.borderWidth = '5px';
+        player1ScoreElement.style.borderStyle = 'solid';
+
+        player2ScoreElement.style.borderColor = 'initial';
+        player2ScoreElement.style.borderWidth = 'initial';
+        player2ScoreElement.style.borderStyle = 'none';
+
+      } else if (player2ScoreIndex === 3 && player1ScoreIndex <= 1) {
+        gameText.style.display = 'block';
+        statusMessage.textContent = "Player 2 wins the game!";
+        player2ScoreElement.style.borderColor = '#B9FF66';
+        player2ScoreElement.style.borderWidth = '5px';
+        player2ScoreElement.style.borderStyle = 'solid';
+
+        player1ScoreElement.style.borderColor = 'initial';
+        player1ScoreElement.style.borderWidth = 'initial';
+        player1ScoreElement.style.borderStyle = 'none';
+
+      } else {
+        gameText.style.display = 'none';
+        if (statusMessage.textContent === "Keep playing!") {
+          statusMessage.textContent = "Ready to play!";
+        }
+        player1ScoreElement.style.borderColor = 'initial';
+        player1ScoreElement.style.borderWidth = 'initial';
+        player1ScoreElement.style.borderStyle = 'none';
+
+        player2ScoreElement.style.borderColor = 'initial';
+        player2ScoreElement.style.borderWidth = 'initial';
+        player2ScoreElement.style.borderStyle = 'none';
+      }
+    }
+    </script>
+
+
+
+</body>
+</html>

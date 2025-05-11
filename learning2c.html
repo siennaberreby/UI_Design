@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tennis Scoring Trainer – Point Progression</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+
+.graphic-step.active, .graphic-step-point {
+    color: #B9FF66; 
+  }
+
+    .learning-content {
+      padding: 40px 100px;
+    }
+
+    .page-title {
+      font-size: 36px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .objective-title {
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .objective-description {
+      font-size: 18px;
+      margin-bottom: 20px;
+      max-width: 600px;
+    }
+
+    .progress-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      position: absolute;
+      top: 115px;
+      right: 115px;
+      margin-left: 0;
+    }
+
+    .bar {
+      display: flex;
+      gap: 8px;
+    }
+
+    .bar-step {
+      width: 60px;
+      height: 5px;
+      border-radius: 6px;
+      background-color: #eee;
+    }
+
+
+    .bar-step.active {
+      background-color: #B9FF66;
+    }
+
+    .skip-btn {
+      background-color: #B9FF66;
+      padding: 12px 20px;
+      font-size: 16px;
+      border: 2px solid #000;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-bottom: 62px;
+    }
+
+ 
+    .back-btn, .next-btn, .backMod-btn, .nextMod-btn {
+      background-color: #B9FF66;
+      color: black;
+      padding: 12px 20px;
+      font-size: 16px;
+      border: 2px solid #000;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 40px;
+      width: 60px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+
+
+    .info-box {
+      background-color: #F5F5F5;
+      border-radius: 24px;
+      padding: 40px;
+    }
+
+    .info-title {
+      font-size: 20px;
+      font-weight: 600;
+      background-color: #B9FF66;
+      display: inline-block;
+      padding: 4px 10px;
+      margin-bottom: 20px;
+    }
+
+    .graphic-bar {
+      background-color: #333;
+      color: white;
+      border-radius: 100px;
+      padding: 14px 30px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+    .graphic-step {
+      cursor: pointer;
+      transition: opacity 0.2s ease, color 0.2s ease;
+    }
+
+    .graphic-step:hover {
+      opacity: 0.8;
+    }
+
+    .graphic-step.active {
+      color: #B9FF66;
+    }
+
+    .arrow {
+      font-size: 20px;
+    }
+
+    .explanation-box {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      color: #333;
+      max-width: 600px;
+      margin: 0 auto;
+      display: none;
+    }
+
+    .explanation-box.active {
+      display: block;
+    }
+
+    .top-nav {
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="quiz-container">
+    <!-- Top Nav with progress -->
+    <div class="top-nav">
+      <div class="logo">
+        <span class="star">★</span>
+        <span class="logo-text">Tennis Scoring Trainer</span>
+      </div>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="learning1.html" class="nav-link active">Learning</a>
+          <a href="preview.html" class="nav-link">Quiz</a>
+          <a href="results.html" class="nav-link">Results</a>
+        </div>
+        <div class="progress-wrapper">
+          <span style="font-size: 14px; font-weight: 500;">PROGRESS</span>
+          <div class="bar">
+            <div class="bar-step active"></div>
+            <div class="bar-step active"></div>
+            <div class="bar-step"></div>
+            <div class="bar-step"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Page Content -->
+    <div class="learning-content">
+      <h1 class="page-title">Point Progression — <span style="font-weight: 800;">Part 3 of 3</span></h1>
+
+      <div class="objective-title">Learning Objective:</div>
+
+      <a href="preview.html">
+        <button class="skip-btn">Skip to Quiz</button>
+      </a>
+
+    
+      <div class="info-box">
+        <div class="info-title">Let's See a Real World Example!</div>
+        <div style="display: flex; gap: 30px; margin-top: 20px;">
+          <div style="width: 65%; position: relative; background: #000; border-radius: 12px; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 350px;">
+            <a href="https://youtu.be/WrWbsHNcik8?si=r6p5Qbi_Sz5HJYun" target="_blank" style="text-decoration: underline; color: white; font-size: 24px; font-weight: 600; text-align: center; padding: 20px;">
+              ▶ 30 Brilliant Court-Level Tennis Points
+            </a>
+          </div>
+          <div style="width: 35%;">
+            <h3 style="margin-top: 0; font-weight: 600; margin-bottom: 15px;">Note:</h3>
+            <div style="font-style: italic; font-weight: normal;">
+              Pay attention to the scores on the bottom left corner of the screen to see how the points progress throughout the match.
+            </div>
+            <ul style="margin-top: 15px; padding-left: 20px;">
+              <li style="margin-bottom: 8px;">Notice how the point system follows the sequence: <strong>0 → 15 → 30 → 40 → Game.</strong></li>
+            </ul>
+          </div>
+        </div>
+    </div>
+    
+    <div style="display: flex; justify-content: space-between; width: 100%;">
+      <div style="display: flex; gap: 15px;">
+        <a href="learning1.html">
+          <button class="backMod-btn"><img src="https://i.imgur.com/qo8IhEx.png" referrerpolicy="no-referrer" style="width: 45px; height: 50; transform: rotate(180deg);" ></button>
+        </a>
+        <a href="learning2b.html">
+          <button class="back-btn" style="display: flex; align-items: center; justify-content: center;">
+            <img src="https://i.imgur.com/ZO6RzoY.png" referrerpolicy="no-referrer" style="width: 20px; height: 50; transform: rotate(180deg);" />
+          </button>
+        </a>
+      </div>
+      <div style="display: flex; gap: 15px;">
+        <a href="learning3.html">
+          <button class="next-btn" style="display: flex; align-items: center; justify-content: center;">
+            <img src="https://i.imgur.com/ZO6RzoY.png" referrerpolicy="no-referrer" style="width: 20px; height: 50;" />
+          </button>
+        </a>
+        <a href="learning3.html">
+          <button class="nextMod-btn"><img src="https://i.imgur.com/qo8IhEx.png" referrerpolicy="no-referrer" style="width: 45px; height: 50;" ></button>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  
+
+
+  <script>
+
+  </script>
+  
+  
+  
+
+</body>
+</html>

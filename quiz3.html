@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tennis Scoring Trainer - Quiz 1</title>
+  <title>Tennis Scoring Trainer - Quiz 3</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 </head>
@@ -25,13 +25,13 @@
 
     <!-- Progress Bar -->
     <div class="progress-section">
-      <h2 class="quiz-title">Quiz: Point Progression</h2>
+      <h2 class="quiz-title">Quiz: Tiebreak Rules</h2>
       <div class="progress-container">
         <span class="progress-label">PROGRESS</span>
         <div class="progress-bar">
           <div class="progress-step active"></div>
-          <div class="progress-step"></div>
-          <div class="progress-step"></div>
+          <div class="progress-step active"></div>
+          <div class="progress-step active"></div>
           <div class="progress-step"></div>
           <div class="progress-step"></div>
           <div class="progress-step"></div>
@@ -42,20 +42,21 @@
     <!-- Quiz Question -->
     <div class="quiz-question-container">
       <h3 class="question-title">
-        The score is 30-30. Player A wins the point. What's the new score?      </h3>
+        In tennis scoring, what does 'Love' represent?
+      </h3>
       <div class="options-container">
         <div class="options-list">
-          <div class="option"  data-correct="true">
+          <div class="option" data-correct="true">
             <input type="radio" name="answer" id="option-a">
-            <label for="option-a">a) 40-30.</label>
+            <label for="option-a">a) Zero.</label>
           </div>
           <div class="option">
             <input type="radio" name="answer" id="option-b">
-            <label for="option-b">b) Deuce.</label>
+            <label for="option-b">b) Tie.</label>
           </div>
           <div class="option">
             <input type="radio" name="answer" id="option-c">
-            <label for="option-c">c) 30-40.</label>
+            <label for="option-c">c) First Point.</label>
           </div>
           <!--<div class="option">
             <input type="radio" name="answer" id="option-d">
@@ -63,28 +64,33 @@
           </div>-->
         </div>
         <div class="feedback-container">
-          <div class="feedback-correct">Correct!</div>
+          <div class="feedback-correct">Correct! See explanation below.</div>
           <div class="feedback-incorrect">Incorrect! Try again.</div>
         </div>
       </div>
     </div>
 
     <!-- Hidden Explanation -->
-    <!--<div id="explanation" style="padding: 20px 100px; display: none;">
+    <div id="explanation" style="padding: 20px 100px; display: none;">
       <h4 style="margin-bottom: 10px;">Explanation:</h4>
       <ul style="text-align: left; line-height: 1.6; font-size: 18px;">
-        <li><strong>5–5</strong> — No tiebreak yet. Players continue playing.</li>
-        <li><strong>6–6</strong> — Yes, a tiebreak is played at 6–6 to decide the set.</li>
-        <li><strong>7–6</strong> — No tiebreak here. The set has already been won 7–6.</li>
-        <li><strong>5–4</strong> — No tiebreak. Players must reach 6 games with a 2-game margin.</li>
+        <li><strong>Zero</strong> — Yes! 'Love' in tennis means zero points.</li>
+        <li><strong>Tie</strong> — No, 'Love' does not refer to a tie situation.</li>
+        <li><strong>First Point</strong> — Incorrect! 'Love' isn't the first point, it simply means zero.</li>
       </ul>
-    </div>-->
+    </div>
 
     <!-- Navigation -->
     <div class="navigation-container">
-      <a href="quiz2.html" class="nav-button prev-button">&lt;</a>
-      <span class="nav-text">Next: What Does Love Mean?</span>
-      <a href="quiz4.html" class="nav-button next-button" id="nextQuizBtn">&gt;</a>
+      <!--<a href="quiz2.html" class="nav-button prev-button">&lt;</a>
+      <span class="nav-text">Next: Point Progression Drag & Drop</span>
+      <a href="quiz4.html" class="nav-button next-button">&gt;</a>-->
+        <a href="quiz2.html" class="back-btn"><img src="https://i.imgur.com/ZO6RzoY.png" referrerpolicy="no-referrer" style="width: 20px; height: 50; transform: rotate(180deg)" />
+        </a>
+        <span class="nav-text">Next: Love Definition MCQ</span>
+        <a href="quiz4.html" class="next-btn"><img src="https://i.imgur.com/ZO6RzoY.png" referrerpolicy="no-referrer" style="width: 20px; height: 50;" />
+          </a>
+      
     </div>
   </div>
 
@@ -104,10 +110,11 @@
           // Save correct answer
           let correct = Number(localStorage.getItem('correctAnswers') || 0);
           localStorage.setItem('correctAnswers', correct + 1);
+          explanation.style.display = "block"; // show explanation if correct only
         } else {
           feedbackIncorrect.style.display = "block";
           feedbackCorrect.style.display = "none";
-          explanation.style.display = "block"; // show explanation if wrong
+          explanation.style.display = "none"; 
         }
       });
     });

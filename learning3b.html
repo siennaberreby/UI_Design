@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tennis Scoring Trainer – Deuce & Advantage</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+
+    .learning-content {
+      padding: 40px 100px;
+    }
+
+    .page-title {
+      font-size: 36px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .objective-title {
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .objective-description {
+      font-size: 18px;
+      margin-bottom: 20px;
+      max-width: 600px;
+    }
+
+    .progress-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      position: absolute;
+      top: 115px;
+      right: 115px;
+      margin-left: 0;
+    }
+
+    .bar {
+      display: flex;
+      gap: 8px;
+    }
+
+    .bar-step {
+      width: 60px;
+      height: 5px;
+      border-radius: 6px;
+      background-color: #eee;
+    }
+
+    .bar-step.active {
+      background-color: #B9FF66;
+    }
+
+    .skip-btn {
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-bottom: 62px;
+    }
+
+    .skip-btn {
+      background-color: #B9FF66;
+      border: 2px solid #000;
+    }
+
+    .back-btn, .next-btn, .backMod-btn, .nextMod-btn {
+      background-color: #B9FF66;
+      color: black;
+      padding: 12px 20px;
+      font-size: 16px;
+      border: 2px solid #000;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 40px;
+      width: 60px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+
+    .info-box {
+      background-color: #F5F5F5;
+      border-radius: 24px;
+      padding: 40px;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .info-section {
+      max-width: 700px;
+      margin-bottom: 30px;
+    }
+
+    .info-label {
+      font-size: 20px;
+      font-weight: 600;
+      background-color: #B9FF66;
+      display: inline-block;
+      padding: 4px 10px;
+      margin-bottom: 10px;
+    }
+
+    .info-text {
+      font-size: 18px;
+    }
+
+    .info-text strong {
+      font-weight: 600;
+    }
+
+    .bubble-note {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background-color: #fff;
+      border: 2px solid #000;
+      border-radius: 50px;
+      padding: 14px 18px;
+      font-size: 14px;
+    }
+
+    .timeline-box {
+      background-color: #F5F5F5;
+      border-radius: 24px;
+      padding: 40px;
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 30px;
+    }
+
+    .timeline-label {
+      font-size: 20px;
+      font-weight: 600;
+      background-color: #B9FF66;
+      display: inline-block;
+      padding: 4px 10px;
+    }
+
+    .timeline-instruction {
+      font-size: 16px;
+      font-weight: 400;
+      max-width: 360px;
+    }
+
+    .btn-simulate {
+      background-color: white;
+      font-weight: 600;
+      padding: 12px 18px;
+      margin: 10px 10px 20px 0;
+      font-size: 16px;
+      border: 2px solid black;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn-simulate:hover {
+      background-color: #a0f54f;
+    }
+
+    .scoreboard {
+      width: 100%;
+      max-width: 400px;
+      margin-top: 20px;
+      border: 2px solid #000;
+      border-radius: 12px;
+      background: #fff;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .score-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 24px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .score-row:last-child {
+      border-bottom: none;
+    }
+
+    .status-message {
+      font-size: 20px;
+      font-weight: 600;
+      margin-top: 16px;
+    }
+
+    .top-nav {
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+    .infoTwo-box {
+    background-color: #D9D9D9;
+    border-radius: 16px;
+    padding: 60px 20px 60px 20px;
+    max-width: 550px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+  </style>
+</head>
+
+<body>
+  <div class="quiz-container">
+    <!-- Top Nav with progress -->
+    <div class="top-nav">
+      <div class="logo">
+        <span class="star">★</span>
+        <span class="logo-text">Tennis Scoring Trainer</span>
+      </div>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="learning3.html" class="nav-link active">Learning</a>
+          <a href="preview.html" class="nav-link">Quiz</a>
+          <a href="results.html" class="nav-link">Results</a>
+        </div>
+        <div class="progress-wrapper">
+          <span style="font-size: 14px; font-weight: 500;">PROGRESS</span>
+          <div class="bar">
+            <div class="bar-step active"></div>
+            <div class="bar-step active"></div>
+            <div class="bar-step active"></div>
+            <div class="bar-step"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Page Content -->
+    <div class="learning-content">
+      <h1 class="page-title">Deuce & Advantange — <span style="font-weight: 800;">Part 2 of 3</span></h1>
+
+      <div class="objective-title">Learning Objective:</div>
+      <div class="objective-description">
+        Learn the concepts of deuce and advantage through an interactive tennis game simulation.
+      </div>
+
+      <a href="preview.html">
+        <button class="skip-btn">Skip to Quiz</button>
+      </a>
+
+      <!-- Scoreboard Simulation -->
+      <div class="timeline-box">
+        <div class="timeline-header">
+          <div style="display: flex; align-items: center; gap: 20px;">
+            <div class="timeline-label">Let’s See This in Action!</div>
+            <div class="timeline-instruction" style="margin-top: 4px; font-style: italic;">
+              Use the score buttons below to simulate who scores each point.
+            </div>
+          </div>
+        </div>
+        <br>
+
+        <div class = "infoTwo-box">
+          <div class="info-text">
+          </div>
+
+      <div style="background-color: rgb(152, 150, 150); border-radius: 16px; padding: 15px; width: 30%; text-align: center; margin-left: 40px;">
+          <h3>Player 1</h3>
+      </div>
+      <button class="btn-simulate" onclick="score(1)" style="position: absolute;top: 555px; left:720px;">Score</button>
+      <div style="background-color: rgb(152, 150, 150); border-radius: 20%; padding: 10px; width: 80px; height: 70px; text-align: center; position: absolute; top: 555px; left: 850px; display: flex; align-items: center; justify-content: center;">
+        <h3 id="p1-display" style="margin: 0;">40</h3>
+      </div>
+      <br>
+      <br>
+
+      <div style="background-color: rgb(152, 150, 150); border-radius: 16px; padding: 15px; width: 30%; text-align: center; margin-left: 40px;">
+          <h3>Player 2</h3>
+      </div>
+      <button class="btn-simulate" onclick="score(2)" style="position: absolute;top: 655px; left:720px;">Score</button>
+      <div style="background-color: rgb(152, 150, 150); border-radius: 20%; padding: 10px; width: 80px; height: 70px; text-align: center; position: absolute; top: 650px; left: 850px; display: flex; align-items: center; justify-content: center;">
+        <h3 id="p2-display" style="margin: 0;">40</h3>
+      </div>
+      </div>
+
+      <div class="status-message" id="status" style="text-align: center; margin-top: 20px; font-size: 24px; font-weight: bold;">Deuce between player 1 and 2.</div>
+      </div>
+      <br>
+
+      <div style="display: flex; justify-content: space-between; width: 100%;">
+        <div style="display: flex; gap: 15px;">
+          <a href="learning2.html">
+            <button class="backMod-btn"><img src="https://i.imgur.com/qo8IhEx.png" referrerpolicy="no-referrer" style="width: 45px; height: 50; transform: rotate(180deg);" ></button>
+          </a>
+          <a href="learning3.html">
+            <button class="back-btn" style="display: flex; align-items: center; justify-content: center;">
+              <img src="https://i.imgur.com/ZO6RzoY.png" referrerpolicy="no-referrer" style="width: 20px; height: 50; transform: rotate(180deg);" />
+            </button>
+          </a>
+        </div>
+        <div style="display: flex; gap: 15px;">
+          <a href="learning3c.html">
+            <button class="next-btn" style="display: flex; align-items: center; justify-content: center;">
+              <img src="https://i.imgur.com/ZO6RzoY.png" referrerpolicy="no-referrer" style="width: 20px; height: 50;" />
+            </button>
+          </a>
+          <a href="learning4.html">
+            <button class="nextMod-btn"><img src="https://i.imgur.com/qo8IhEx.png" referrerpolicy="no-referrer" style="width: 45px; height: 50;" ></button>
+          </a>
+        </div>
+      </div>
+  
+  </div>
+
+  <!-- Simulation Script -->
+  <script>
+    let state = "deuce";
+    let adv = null;
+
+    function score(player) {
+      const p1Display = document.getElementById("p1-display");
+      const p2Display = document.getElementById("p2-display");
+      const status = document.getElementById("status");
+      const p1Box = p1Display.parentElement;
+      const p2Box = p2Display.parentElement;
+
+      if (state === "deuce") {
+        state = "advantage";
+        adv = player;
+        p1Box.style.border = "none";
+        p2Box.style.border = "none";
+
+        if (player === 1) {
+          p1Display.textContent = "Adv";
+          p2Display.textContent = "40";
+          status.textContent = "Player 1 gains an advantage.";
+        } else {
+          p2Display.textContent = "Adv";
+          p1Display.textContent = "40";
+          status.textContent = "Player 2 gains an advantage.";
+        }
+      } else if (state === "advantage") {
+        if (player === adv) {
+          state = "win";
+          if (player === 1) {
+            p1Display.textContent = "Game!";
+            status.textContent = "Player 1 wins!";
+            p1Box.style.border = "4px solid #B9FF66";
+          } else {
+            p2Display.textContent = "Game!";
+            status.textContent = "Player 2 wins!";
+            p2Box.style.border = "4px solid #B9FF66";
+          }
+        } else {
+          state = "deuce";
+          adv = null;
+          p1Display.textContent = "40";
+          p2Display.textContent = "40";
+          status.textContent = "Deuce between player 1 and 2.";
+        }
+      } else if (state === "win") {
+        state = "deuce";
+        adv = null;
+        p1Display.textContent = "40";
+        p2Display.textContent = "40";
+        status.textContent = "Deuce between player 1 and 2.";
+        p1Box.style.border = "none";
+        p2Box.style.border = "none";
+      }
+    }
+
+    window.onload = function() {
+      const p1Display = document.getElementById("p1-display");
+      const p2Display = document.getElementById("p2-display");
+      if (p1Display && p2Display) {
+        p1Display.textContent = "40";
+        p2Display.textContent = "40";
+      }
+    };
+  </script>
+</body>
+</html>

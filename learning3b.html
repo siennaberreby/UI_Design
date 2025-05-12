@@ -253,7 +253,7 @@
 
       <div class="objective-title">Learning Objective:</div>
       <div class="objective-description">
-        Learn the concepts of deuce and advantage through an interactive tennis game simulation.
+        Learn the concepts of deuce and advantage and how they apply in matches.
       </div>
 
       <a href="preview.html">
@@ -339,6 +339,7 @@
       if (state === "deuce") {
         state = "advantage";
         adv = player;
+        // Reset any previous styling
         p1Box.style.border = "none";
         p2Box.style.border = "none";
 
@@ -371,16 +372,19 @@
           status.textContent = "Deuce between player 1 and 2.";
         }
       } else if (state === "win") {
+        // Reset the game
         state = "deuce";
         adv = null;
         p1Display.textContent = "40";
         p2Display.textContent = "40";
         status.textContent = "Deuce between player 1 and 2.";
+        // Reset border styling
         p1Box.style.border = "none";
         p2Box.style.border = "none";
       }
     }
 
+    // Initialize both displays at 40
     window.onload = function() {
       const p1Display = document.getElementById("p1-display");
       const p2Display = document.getElementById("p2-display");

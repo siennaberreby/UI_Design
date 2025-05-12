@@ -178,9 +178,9 @@
       gap: 30px;
     }
     #timeline-status {
-      font-size: 20px; /* Increased font size */
-      font-style: normal; /* Resetting to normal */
-      font-weight: bold; /* Making the font bold */
+      font-size: 20px;
+      font-style: normal; 
+      font-weight: bold;
     }
   </style>
 </head>
@@ -277,17 +277,16 @@
             const timelinePoints = document.querySelectorAll('.timeline-point');
             const statusElement = document.getElementById('timeline-status');
 
-            // Reset all points to gray
+            //reset all points to gray
             timelinePoints.forEach(point => {
               point.style.backgroundColor = '#444';
               point.style.color = 'white';
             });
 
-            // Set the clicked point to green
+            //set the clicked point to green
             timelinePoints[index].style.backgroundColor = '#B9FF66';
             timelinePoints[index].style.color = 'black';
 
-            // Update the status text based on the clicked point
             const statusMessages = [
               "Player 1 wins the first point and takes an early .",
               "Player 1 extends their lead to 2-0.",

@@ -42,7 +42,7 @@
     <!-- Quiz Question -->
     <div class="quiz-question-container">
       <h3 class="question-title">
-        In a women’s Grand Slam match (best of 3 sets), which of these is a valid final score?
+        In a women’s Grand Slam match (best of 3 sets), which two choices is a valid final score?
       </h3>
       <div class="options-container">
         <div class="options-list">
@@ -96,38 +96,50 @@
 
   <script src="script.js"></script>
   <script>
-    const checkboxes = document.querySelectorAll("input[type='checkbox']");
-    const feedbackCorrect = document.querySelector(".feedback-correct");
-    const feedbackIncorrect = document.querySelector(".feedback-incorrect");
-    const explanation = document.getElementById("explanation");
+   const checkboxes = document.querySelectorAll("input[type='checkbox']");
+const feedbackCorrect = document.querySelector(".feedback-correct");
+const feedbackIncorrect = document.querySelector(".feedback-incorrect");
+const explanation = document.getElementById("explanation");
 
-    document.querySelectorAll(".option").forEach(option => {
-      option.addEventListener("click", () => {
-        const selectedAnswers = {
-          a: document.getElementById("option-a").checked,
-          b: document.getElementById("option-b").checked,
-          c: document.getElementById("option-c").checked,
-          d: document.getElementById("option-d").checked,
-        };
+checkboxes.forEach(checkbox => {
+  checkbox.addEventListener("change", () => {
+    const selected = Array.from(checkboxes).filter(cb => cb.checked);
 
-        // Correct: Only c and d checked
-        const correct = selectedAnswers.c && selectedAnswers.d && !selectedAnswers.a && !selectedAnswers.b;
+    if (selected.length === 2) {
+      const selectedAnswers = {
+        a: document.getElementById("option-a").checked,
+        b: document.getElementById("option-b").checked,
+        c: document.getElementById("option-c").checked,
+        d: document.getElementById("option-d").checked,
+      };
 
-        if (correct) {
-          feedbackCorrect.style.display = "block";
-          feedbackIncorrect.style.display = "none";
-          explanation.style.display = "none";
-          // Save correct answer
-          let current = Number(localStorage.getItem('correctAnswers') || 0);
-          localStorage.setItem('correctAnswers', current + 1);
-          explanation.style.display = "block";
-        } else {
-          feedbackIncorrect.style.display = "block";
-          feedbackCorrect.style.display = "none";
-          explanation.style.display = "none";
-        }
-      });
-    });
+      const correct = selectedAnswers.c && selectedAnswers.d && !selectedAnswers.a && !selectedAnswers.b;
+
+      if (correct) {
+        feedbackCorrect.style.display = "block";
+        feedbackIncorrect.style.display = "none";
+        explanation.style.display = "block";
+        let current = Number(localStorage.getItem('correctAnswers') || 0);
+        localStorage.setItem('correctAnswers', current + 1);
+      } else {
+        feedbackIncorrect.style.display = "block";
+        feedbackCorrect.style.display = "none";
+        explanation.style.display = "none";
+      }
+    } else if (selected.length > 2) {
+      // If more than two are selected, mark as incorrect
+      feedbackIncorrect.style.display = "block";
+      feedbackCorrect.style.display = "none";
+      explanation.style.display = "none";
+    } else {
+      // Hide feedback until two selections
+      feedbackCorrect.style.display = "none";
+      feedbackIncorrect.style.display = "none";
+      explanation.style.display = "none";
+    }
+  });
+});
+
   </script>
 </body>
 </html>

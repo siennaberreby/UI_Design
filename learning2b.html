@@ -241,7 +241,7 @@
             <div style="display: flex; align-items: center; gap: 15px;">
               <div class="info-title" style="margin-bottom: 40px;">Let's See This in Action!</div>
               <div style="font-style: italic; font-weight: normal; margin-bottom: 40px;">
-                Click on the +/- buttons to adjust the score and walkthrough the progression to winning a game.
+              <i>Click on the +/- buttons to adjust the score and walk through the progression to winning a game.</i>
               </div>
             </div>
         </div>
@@ -299,123 +299,79 @@
         </div>
 
     </div>
-  </div>
-  <script>
-    const scoreValues = ["0", "15", "30", "40"];
-
+  </div><script>
+    const scoreValues = ["0", "15", "30", "40", "Win"];
     let player1ScoreIndex = 0;
     let player2ScoreIndex = 0;
-
-    //increase score
+    let player1Points = 0;
+    let player2Points = 0;
+ 
+    function updateScores() {
+        const player1ScoreElement = document.getElementById('player1-score');
+        const player2ScoreElement = document.getElementById('player2-score');
+        player1ScoreElement.textContent = scoreValues[player1ScoreIndex];
+        player2ScoreElement.textContent = scoreValues[player2ScoreIndex];
+ 
+        // Reset color if the score is no longer "Win"
+        player1ScoreElement.style.backgroundColor = player1ScoreIndex === 4 ? "#B9FF66" : "gray";
+        player2ScoreElement.style.backgroundColor = player2ScoreIndex === 4 ? "#B9FF66" : "gray";
+    }
+ 
     function increaseScore(playerNum) {
-      const statusMessage = document.getElementById('status-message');
-      if (playerNum === 1) {
-        if (player1ScoreIndex < scoreValues.length - 1) {
-          player1ScoreIndex++;
-          document.getElementById('player1-score').textContent = scoreValues[player1ScoreIndex];
-          
-          // set status message based on the new score
-          if (scoreValues[player1ScoreIndex] === "15") {
-            statusMessage.textContent = `Player 1 scores a point!`;
-          } else if (scoreValues[player1ScoreIndex] === "30") {
-            statusMessage.textContent = `Player 1 scores 2 points!`;
-          } else if (scoreValues[player1ScoreIndex] === "40") {
-            statusMessage.textContent = `Player 1 scores 3 points!`;
-          }
-          
-          if (player1ScoreIndex === 3 && player2ScoreIndex <= 1) {
-            statusMessage.textContent = `Player 1 wins the game!`;
-          }
+        const statusMessage = document.getElementById('status-message');
+ 
+        if (player1ScoreIndex === 4 || player2ScoreIndex === 4) {
+            statusMessage.textContent = "Game is already over! Reset to play again.";
+            return;
         }
-      } else if (playerNum === 2) {
-        if (player2ScoreIndex < scoreValues.length - 1) {
-          player2ScoreIndex++;
-          document.getElementById('player2-score').textContent = scoreValues[player2ScoreIndex];
-          
-          if (scoreValues[player2ScoreIndex] === "15") {
-            statusMessage.textContent = `Player 2 scores a point!`;
-          } else if (scoreValues[player2ScoreIndex] === "30") {
-            statusMessage.textContent = `Player 2 scores 2 points!`;
-          } else if (scoreValues[player2ScoreIndex] === "40") {
-            statusMessage.textContent = `Player 2 scores 3 points!`;
-          }
-          
-          // Check if player 2 has won
-          if (player2ScoreIndex === 3 && player1ScoreIndex <= 1) {
-            statusMessage.textContent = `Player 2 wins the game!`;
-          }
+ 
+        if (playerNum === 1) {
+            if (player1ScoreIndex < 4) player1ScoreIndex++;
+            player1Points++;
+            statusMessage.textContent = `Player 1 has scored ${player1Points} ${player1Points === 1 ? "point" : "points"}!`;
+        } else {
+            if (player2ScoreIndex < 4) player2ScoreIndex++;
+            player2Points++;
+            statusMessage.textContent = `Player 2 has scored ${player2Points} ${player2Points === 1 ? "point" : "points"}!`;
         }
-      }
-
-      checkGameCondition();
+ 
+        checkWinConditions(statusMessage);
+        updateScores();
     }
-
-    // decrease score
+ 
     function decreaseScore(playerNum) {
-      const statusMessage = document.getElementById('status-message');
-      if (playerNum === 1) {
-        if (player1ScoreIndex > 0) {
-          player1ScoreIndex--;
-          document.getElementById('player1-score').textContent = scoreValues[player1ScoreIndex];
-           statusMessage.textContent = `Player 1 loses a point! Score is now ${scoreValues[player1ScoreIndex]}.`;
+        const statusMessage = document.getElementById('status-message');
+ 
+        if (playerNum === 1 && player1ScoreIndex > 0) {
+            player1ScoreIndex--;
+            player1Points--;
+            statusMessage.textContent = `Player 1 has lost a point, now at ${player1Points} ${player1Points === 1 ? "point" : "points"}.`;
+        } else if (playerNum === 2 && player2ScoreIndex > 0) {
+            player2ScoreIndex--;
+            player2Points--;
+            statusMessage.textContent = `Player 2 has lost a point, now at ${player2Points} ${player2Points === 1 ? "point" : "points"}.`;
         }
-      } else if (playerNum === 2) {
-        if (player2ScoreIndex > 0) {
-          player2ScoreIndex--;
-          document.getElementById('player2-score').textContent = scoreValues[player2ScoreIndex];
-           statusMessage.textContent = `Player 2 loses a point! Score is now ${scoreValues[player2ScoreIndex]}.`;
-        }
-      }
-
-      checkGameCondition();
+ 
+        updateScores();
     }
-
-    //check game condition
-    function checkGameCondition() {
-      const gameText = document.querySelector('.game-text');
-      const player1ScoreElement = document.getElementById('player1-score');
-      const player2ScoreElement = document.getElementById('player2-score');
-      const statusMessage = document.getElementById('status-message');
-
-      if (player1ScoreIndex === 3 && player2ScoreIndex <= 1) {
-        gameText.style.display = 'block';
-        statusMessage.textContent = "Player 1 wins the game!";
-        player1ScoreElement.style.borderColor = '#B9FF66';
-        player1ScoreElement.style.borderWidth = '5px';
-        player1ScoreElement.style.borderStyle = 'solid';
-
-        player2ScoreElement.style.borderColor = 'initial';
-        player2ScoreElement.style.borderWidth = 'initial';
-        player2ScoreElement.style.borderStyle = 'none';
-
-      } else if (player2ScoreIndex === 3 && player1ScoreIndex <= 1) {
-        gameText.style.display = 'block';
-        statusMessage.textContent = "Player 2 wins the game!";
-        player2ScoreElement.style.borderColor = '#B9FF66';
-        player2ScoreElement.style.borderWidth = '5px';
-        player2ScoreElement.style.borderStyle = 'solid';
-
-        player1ScoreElement.style.borderColor = 'initial';
-        player1ScoreElement.style.borderWidth = 'initial';
-        player1ScoreElement.style.borderStyle = 'none';
-
-      } else {
-        gameText.style.display = 'none';
-        if (statusMessage.textContent === "Keep playing!") {
-          statusMessage.textContent = "Ready to play!";
+ 
+    function checkWinConditions(statusMessage) {
+        if (player1ScoreIndex === 4 && player2ScoreIndex >= 2) {
+            statusMessage.textContent = "Player 1 needs a greater lead to win!";
+            player1ScoreIndex = 3; 
+        } else if (player2ScoreIndex === 4 && player1ScoreIndex >= 2) {
+            statusMessage.textContent = "Player 2 needs a greater lead to win!";
+            player2ScoreIndex = 3;
+        } else if (player1ScoreIndex === 4 && player2ScoreIndex <= 1) {
+            statusMessage.textContent = "Player 1 wins the game!";
+        } else if (player2ScoreIndex === 4 && player1ScoreIndex <= 1) {
+            statusMessage.textContent = "Player 2 wins the game!";
         }
-        player1ScoreElement.style.borderColor = 'initial';
-        player1ScoreElement.style.borderWidth = 'initial';
-        player1ScoreElement.style.borderStyle = 'none';
-
-        player2ScoreElement.style.borderColor = 'initial';
-        player2ScoreElement.style.borderWidth = 'initial';
-        player2ScoreElement.style.borderStyle = 'none';
-      }
     }
-    </script>
-
-
-
-</body>
-</html>
+ </script>
+ 
+ 
+ 
+  </script>
+  </body>
+  </html>

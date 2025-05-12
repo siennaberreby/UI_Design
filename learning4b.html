@@ -178,9 +178,9 @@
       gap: 30px;
     }
     #timeline-status {
-      font-size: 20px; 
-      font-style: normal; 
-      font-weight: bold;
+      font-size: 20px; /* Increased font size */
+      font-style: normal; /* Resetting to normal */
+      font-weight: bold; /* Making the font bold */
     }
   </style>
 </head>
@@ -249,21 +249,23 @@
 
         <div class="caption-boxes">
           <div class="timeline-caption" id="timeline-status">
-            Player 1 wins the first game and takes an early lead.
+            Player 1 wins the first point and takes an early lead.
           </div>
         </div>
         <br>
 
 
         <script>
-          //init the timeline points
+          // Initialize the timeline points to be gray except the first one
           document.addEventListener('DOMContentLoaded', function() {
             const timelinePoints = document.querySelectorAll('.timeline-point');
             timelinePoints.forEach((point, index) => {
               if (index === 0) {
+                // Make the first point green
                 point.style.backgroundColor = '#B9FF66';
                 point.style.color = 'black';
               } else {
+                // Set all others to gray
                 point.style.backgroundColor = '#444';
                 point.style.color = 'white';
               }
@@ -275,21 +277,22 @@
             const timelinePoints = document.querySelectorAll('.timeline-point');
             const statusElement = document.getElementById('timeline-status');
 
-            //set all points to spec. colors
+            // Reset all points to gray
             timelinePoints.forEach(point => {
               point.style.backgroundColor = '#444';
               point.style.color = 'white';
             });
 
+            // Set the clicked point to green
             timelinePoints[index].style.backgroundColor = '#B9FF66';
             timelinePoints[index].style.color = 'black';
 
-            //update the status text based on the clicked point
+            // Update the status text based on the clicked point
             const statusMessages = [
-              "Player 1 wins the first game and takes an early lead.",
+              "Player 1 wins the first point and takes an early .",
               "Player 1 extends their lead to 2-0.",
               "The tiebreak continues and reaches 6-6.",
-              "Player 1 takes the lead at 7-6, now only one game away from winning.",
+              "Player 1 takes the lead at 7-6, now only one point away from winning.",
               "Player 1 extends their lead to 8-6, gaining a crucial advantage.",
               "Player 1 wins the tiebreak and secures the set! The final score is 8-6."
             ];

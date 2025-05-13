@@ -46,11 +46,11 @@
       </h3>
       <div class="options-container">
         <div class="options-list">
-          <div class="option" >
+          <div class="option" data-correct="true">
             <input type="radio" name="answer" id="option-a">
             <label for="option-a">a) Advantage B.</label>
           </div>
-          <div class="option" data-correct="true">
+          <div class="option">
             <input type="radio" name="answer" id="option-b">
             <label for="option-b">b) 40-30.</label>
           </div>
@@ -58,10 +58,6 @@
             <input type="radio" name="answer" id="option-c">
             <label for="option-c">c) Game B.</label>
           </div>
-          <!--<div class="option">
-            <input type="radio" name="answer" id="option-d">
-            <label for="option-d">d) The score in a set is 5–4.</label>
-          </div>-->
         </div>
         <div class="feedback-container">
           <div class="feedback-correct">Correct! See explanation below.</div>
@@ -70,7 +66,7 @@
       </div>
     </div>
 
-    <!-- Hidden Explanation -->
+    <!-- Explanation Section -->
     <div id="explanation" style="padding: 20px 100px; display: none;">
       <h4 style="margin-bottom: 10px;">Explanation:</h4>
       <ul style="text-align: left; line-height: 1.6; font-size: 18px;">
@@ -82,18 +78,17 @@
 
     <!-- Navigation -->
     <div class="navigation-container">
-      <!--<a href="quiz1.html" class="nav-button prev-button">&lt;</a>
-      <span class="nav-text">Next: Point Progression Drag & Drop</span>
-      <a href="quiz3.html" class="nav-button next-button">&gt;</a>-->
-        <a href="quiz1.html" class="back-btn"><img src="https://i.imgur.com/ZO6RzoY.png" referrerpolicy="no-referrer" style="width: 20px; height: 50; transform: rotate(180deg)" />
-        </a>
-        <span class="nav-text">Next: Tiebreak Rules MCQ</span>
-        <a href="quiz3.html" class="next-btn"><img src="https://i.imgur.com/ZO6RzoY.png" referrerpolicy="no-referrer" style="width: 20px; height: 50;" />
-          </a>
+      <a href="quiz1.html" class="back-btn">
+        <img src="https://i.imgur.com/ZO6RzoY.png" referrerpolicy="no-referrer" style="width: 20px; height: 50px; transform: rotate(180deg);" />
+      </a>
+      <span class="nav-text">Next: Tiebreak Rules MCQ</span>
+      <a href="quiz3.html" class="next-btn">
+        <img src="https://i.imgur.com/ZO6RzoY.png" referrerpolicy="no-referrer" style="width: 20px; height: 50px;" />
+      </a>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <!-- Script -->
   <script>
     const options = document.querySelectorAll(".option");
     const feedbackCorrect = document.querySelector(".feedback-correct");
@@ -102,19 +97,19 @@
 
     options.forEach(option => {
       option.addEventListener("click", () => {
+        const input = option.querySelector("input");
+        input.checked = true;
+
         if (option.hasAttribute("data-correct")) {
           feedbackCorrect.style.display = "block";
           feedbackIncorrect.style.display = "none";
-          explanation.style.display = "none";
-          // Save correct answer
+          explanation.style.display = "block";
           let correct = Number(localStorage.getItem('correctAnswers') || 0);
           localStorage.setItem('correctAnswers', correct + 1);
-          explanation.style.display = "block"; // show explanation if correct only
-
         } else {
-          feedbackIncorrect.style.display = "block";
           feedbackCorrect.style.display = "none";
-          explanation.style.display = "none"; // show explanation if wrong
+          feedbackIncorrect.style.display = "block";
+          explanation.style.display = "none";
         }
       });
     });
